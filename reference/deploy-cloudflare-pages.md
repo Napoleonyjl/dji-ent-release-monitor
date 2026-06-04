@@ -32,6 +32,11 @@ If those files are not present, it falls back to the local FastAPI
 It installs `src/requirements.txt`, runs `scripts/build_static_site.py`, then
 deploys `public/` to Cloudflare Pages.
 
+If GitHub rejects workflow commits because your local token lacks the
+`workflow` scope, copy `reference/deploy-pages-workflow.yml` to
+`.github/workflows/deploy-pages.yml` from the GitHub web UI, or retry the commit
+with a token that includes the `workflow` scope.
+
 ## Required GitHub secrets
 
 Add these repository secrets before enabling deployment:
