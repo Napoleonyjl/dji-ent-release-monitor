@@ -1,6 +1,6 @@
 # DJI ENT Release Note Monitor
 
-A small WebUI that checks DJI enterprise product download pages, reads the latest Release Notes PDF, and shows firmware updates published in the last 30 days.
+A small WebUI that checks DJI enterprise product download pages, reads the latest Release Notes PDF, and shows firmware updates across selectable time windows.
 
 ## Setup
 
@@ -37,8 +37,8 @@ The `url` must be the official product download page (must contain a "Manuals" s
 
 ## How it works
 
-1. On page load the frontend calls `GET /api/releases`.
-2. The backend fetches each product's download page via HTTP, finds the Release Notes row whose label best matches the product name, and downloads the linked PDF.
-3. `pdfplumber` extracts the `Date:` line, the firmware version table, and the `What's new` section.
-4. Results are filtered to entries published in the last 30 days, then returned as JSON.
-5. Backend caches results for 10 minutes. Click "Refresh now" in the UI to bypass the cache.
+1. On page load the frontend first reads `GET /data/releases-<lang>.json`, so saved content can render immediately.
+2. The frontend then triggers `GET /api/releases` in the background. If a saved snapshot exists, the API returns it immediately and refreshes DJI data without blocking the page.
+3. The backend fetches each product's download page via HTTP, finds the Release Notes row whose label best matches the product name, and downloads the linked PDF.
+4. `pdfplumber` extracts the `Date:` line, the firmware version table, and the `What's new` section.
+5. Results are filtered client-side by the selected time window. Backend results are cached for 10 minutes and written to `app/data/` for the next open.

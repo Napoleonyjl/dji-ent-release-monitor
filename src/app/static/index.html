@@ -297,6 +297,8 @@
       <button class="chip" data-days="14" data-i18n="twoWeeks">2 weeks</button>
       <button class="chip active" data-days="30" data-i18n="thirtyDays">30 days</button>
       <button class="chip" data-days="60" data-i18n="twoMonths">2 months</button>
+      <button class="chip" data-days="180" data-i18n="sixMonths">6 months</button>
+      <button class="chip" data-days="365" data-i18n="oneYear">1 year</button>
     </div>
     <div class="filter-row">
       <span class="filter-label" data-i18n="productsLabel">Products</span>
@@ -329,7 +331,7 @@
         byline: 'Developed by DJI Enterprise EU GKAS team',
         loadingInitial: 'Loading daily release data…',
         scraping: 'Loading daily release data…',
-        rescraping: 'Reloading daily release data…',
+        rescraping: 'Updating in the background…',
         refresh: 'Reload data',
         language: '中英切换：English',
         windowLabel: 'Window',
@@ -338,6 +340,8 @@
         twoWeeks: '2 weeks',
         thirtyDays: '30 days',
         twoMonths: '2 months',
+        sixMonths: '6 months',
+        oneYear: '1 year',
         all: 'All',
         none: 'None',
         unknownDate: 'unknown date',
@@ -349,7 +353,7 @@
         sectionTitle: (days, shown, total) => `Updates in the last ${days} days · ${shown} of ${total} products selected`,
         noUpdates: days => `No selected products have released firmware in the last ${days} days.`,
         errors: count => `Errors (${count})`,
-        headerMeta: data => `Today: ${data.today} · Last updated: ${data.generated_at}${data.static ? ' · daily static data' : (data.cached ? ' · cached' : ' · fresh')}`,
+        headerMeta: data => `Today: ${data.today} · Last updated: ${data.generated_at}${data.updating ? ' · updating in background' : (data.stale ? ' · showing saved data' : (data.static ? ' · daily static data' : (data.cached ? ' · cached' : ' · fresh')))}`,
         failed: msg => `Failed to load: ${msg}`,
       },
       zh: {
@@ -357,7 +361,7 @@
         byline: '由 DJI Enterprise EU GKAS team 开发',
         loadingInitial: '正在加载每日发布数据…',
         scraping: '正在加载每日发布数据…',
-        rescraping: '正在重新加载每日发布数据…',
+        rescraping: '正在后台更新…',
         refresh: '重新加载数据',
         language: '中英切换：中文',
         windowLabel: '时间',
@@ -366,6 +370,8 @@
         twoWeeks: '2周',
         thirtyDays: '30天',
         twoMonths: '2个月',
+        sixMonths: '半年',
+        oneYear: '一年',
         all: '全选',
         none: '全不选',
         unknownDate: '日期未知',
@@ -377,18 +383,20 @@
         sectionTitle: (days, shown, total) => `最近 ${days} 天的更新 · 已选产品中 ${shown}/${total} 个有记录`,
         noUpdates: days => `最近 ${days} 天内，所选产品没有发布固件更新。`,
         errors: count => `错误 (${count})`,
-        headerMeta: data => `今天：${data.today} · 最后更新：${data.generated_at}${data.static ? ' · 每日静态数据' : (data.cached ? ' · 缓存' : ' · 最新')}`,
+        headerMeta: data => `今天：${data.today} · 最后更新：${data.generated_at}${data.updating ? ' · 后台更新中' : (data.stale ? ' · 正在显示已保存数据' : (data.static ? ' · 每日静态数据' : (data.cached ? ' · 缓存' : ' · 最新')))}`,
         failed: msg => `加载失败：${msg}`,
       },
     };
 
     // State
     let lastData = null;
+    let refreshTimer = null;
     const filters = {
       windowDays: 30,
       products: new Set(),  // empty after first load until populated; filled with all product names
     };
     let currentLang = localStorage.getItem('dji-release-lang') || 'en';
+    const backgroundRefreshStarted = new Set();
 
     function t(key) {
       return copy[currentLang][key];
@@ -548,33 +556,65 @@
     }
 
     async function fetchReleaseData(force) {
+      const params = new URLSearchParams({ lang: currentLang });
+      if (force) params.set('force', '1');
       const staticUrl = `data/releases-${currentLang}.json${force ? '?t=' + Date.now() : ''}`;
+
+      if (force) {
+        try {
+          const apiRes = await fetch('/api/releases?' + params.toString());
+          if (apiRes.ok) return apiRes.json();
+        } catch (_) {
+          // Static Pages deployments do not have the FastAPI endpoint.
+        }
+      }
+
       try {
         const staticRes = await fetch(staticUrl);
         if (staticRes.ok) return staticRes.json();
       } catch (_) {
-        // Local FastAPI app builds do not serve the Pages data directory.
+        // Local FastAPI app builds may not have generated a snapshot yet.
       }
 
-      const params = new URLSearchParams({ lang: currentLang });
-      if (force) params.set('force', '1');
       const apiRes = await fetch('/api/releases?' + params.toString());
       if (!apiRes.ok) throw new Error('HTTP ' + apiRes.status);
       return apiRes.json();
+    }
+
+    async function triggerBackgroundRefresh() {
+      try {
+        const params = new URLSearchParams({ lang: currentLang });
+        const apiRes = await fetch('/api/releases?' + params.toString());
+        if (!apiRes.ok) return;
+        const data = await apiRes.json();
+        if (data.generated_at && (!lastData || data.generated_at !== lastData.generated_at || data.updating !== lastData.updating)) {
+          lastData = data;
+          headerMeta.textContent = t('headerMeta')(data);
+          applyAndRender();
+        }
+        if (data.updating) scheduleFollowupRefresh(4000);
+      } catch (_) {
+        // Static Pages deployments are updated by the scheduled build.
+      }
     }
 
     async function load(force) {
       applyStaticCopy();
       refreshBtn.disabled = true;
       languageBtn.disabled = true;
-      main.innerHTML = `
-        <div class="loading">
-          <div class="spinner"></div>
-          <p>${esc(force ? t('rescraping') : t('scraping'))}</p>
-        </div>
-      `;
+      if (!lastData) {
+        main.innerHTML = `
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>${esc(force ? t('rescraping') : t('scraping'))}</p>
+          </div>
+        `;
+      } else if (force) {
+        headerMeta.textContent = t('rescraping');
+      }
       try {
         const data = await fetchReleaseData(force);
+        const hadData = Boolean(lastData);
         lastData = data;
 
         // Default: select all products
@@ -589,12 +629,29 @@
         headerMeta.textContent = t('headerMeta')(data);
 
         applyAndRender();
+        if (data.updating) scheduleFollowupRefresh(hadData ? 4000 : 2500);
+        if (!force && !data.static && !backgroundRefreshStarted.has(currentLang)) {
+          backgroundRefreshStarted.add(currentLang);
+          triggerBackgroundRefresh();
+        }
       } catch (e) {
-        main.innerHTML = `<div class="empty" style="color:var(--red)">${esc(t('failed')(e.message))}</div>`;
+        if (lastData) {
+          headerMeta.textContent = t('failed')(e.message);
+        } else {
+          main.innerHTML = `<div class="empty" style="color:var(--red)">${esc(t('failed')(e.message))}</div>`;
+        }
       } finally {
         refreshBtn.disabled = false;
         languageBtn.disabled = false;
       }
+    }
+
+    function scheduleFollowupRefresh(delayMs) {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(() => {
+        refreshTimer = null;
+        load(false);
+      }, delayMs);
     }
 
     refreshBtn.addEventListener('click', () => load(true));
@@ -602,6 +659,7 @@
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       localStorage.setItem('dji-release-lang', currentLang);
       lastData = null;
+      if (refreshTimer) clearTimeout(refreshTimer);
       load(false);
     });
     document.addEventListener('DOMContentLoaded', () => load(false));

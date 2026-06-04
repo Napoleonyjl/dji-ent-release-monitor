@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 PUBLIC = ROOT / "public"
 DATA_DIR = PUBLIC / "data"
+APP_DATA_DIR = SRC / "app" / "data"
 
 sys.path.insert(0, str(SRC))
 
@@ -37,6 +38,7 @@ async def main() -> int:
     if PUBLIC.exists():
         shutil.rmtree(PUBLIC)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    APP_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     shutil.copyfile(SRC / "app" / "static" / "index.html", PUBLIC / "index.html")
 
@@ -54,10 +56,9 @@ async def main() -> int:
         print(f">> Building {language} release data")
         data = await build_language(language)
         out = DATA_DIR / f"releases-{language}.json"
-        out.write_text(
-            json.dumps(data, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        payload = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+        out.write_text(payload, encoding="utf-8")
+        (APP_DATA_DIR / out.name).write_text(payload, encoding="utf-8")
         print(
             "   wrote %s releases=%d errors=%d"
             % (out, len(data.get("releases", [])), len(data.get("errors", [])))

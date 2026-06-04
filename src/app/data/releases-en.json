@@ -1,0 +1,785 @@
+{
+  "generated_at": "2026-06-05T01:05:47",
+  "today": "2026-06-05",
+  "language": "en",
+  "product_order": [
+    "DJI Matrice 400",
+    "DJI Matrice 350 RTK",
+    "DJI Matrice 4 Series",
+    "DJI Mavic 3 Enterprise",
+    "DJI Dock 3",
+    "DJI Dock 2",
+    "DJI Dock",
+    "DJI Zenmuse L3",
+    "DJI Zenmuse S1",
+    "DJI Zenmuse V1",
+    "DJI Zenmuse H30 Series",
+    "DJI Zenmuse L2",
+    "DJI Zenmuse H20N",
+    "DJI Zenmuse P1",
+    "DJI Zenmuse H20 Series",
+    "DJI Manifold 3",
+    "DJI D-RTK 3"
+  ],
+  "releases": [
+    {
+      "product": "DJI Matrice 400",
+      "url": "https://enterprise.dji.com/matrice-400/downloads",
+      "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-400/RN/20260528/Matrice_400_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-05-28",
+      "listing_label": "DJI Matrice 400 - Release Notes",
+      "date": "2026-05-28",
+      "days_ago": 8,
+      "firmware": [
+        {
+          "label": "Aircraft Firmware",
+          "version": "v17.02.12.04"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v01.64.08.14"
+        },
+        {
+          "label": "DJI Pilot 2 App Android",
+          "version": "v17.2.0.24"
+        },
+        {
+          "label": "Manifold 3",
+          "version": "v17.00.01.01"
+        },
+        {
+          "label": "D-RTK 2 Mobile Station for Matrice",
+          "version": "v03.01.0000 (incl. Matrice version)"
+        },
+        {
+          "label": "D-RTK 3 Mobile Station for Matrice",
+          "version": "v17.00.00.06"
+        },
+        {
+          "label": "BS100 Intelligent Battery Station",
+          "version": "v01.00.00.12"
+        },
+        {
+          "label": "TB100 Intelligent Flight Battery",
+          "version": "v16.00.00.63"
+        },
+        {
+          "label": "TB100C Tethered Battery",
+          "version": "v17.00.00.39"
+        },
+        {
+          "label": "Zenmuse V1",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Zenmuse S1",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Zenmuse P1",
+          "version": "v10.01.02.01"
+        },
+        {
+          "label": "Zenmuse L2",
+          "version": "v06.00.01.04"
+        },
+        {
+          "label": "Zenmuse L3",
+          "version": "v17.02.00.02"
+        },
+        {
+          "label": "Zenmuse H30/H30T",
+          "version": "v10.05.02.01"
+        },
+        {
+          "label": "DJI X-Port",
+          "version": "v01.04.01.15"
+        },
+        {
+          "label": "DJI Skyport V2",
+          "version": "v01.04.11.14"
+        },
+        {
+          "label": "DJI Assistant 2 (Enterprise Series)",
+          "version": "v2.1.20"
+        },
+        {
+          "label": "Aircraft / Remote Controller",
+          "version": "DJI Assistant 2 / App"
+        },
+        {
+          "label": "D-RTK Mobile Station",
+          "version": "DJI Assistant 2"
+        },
+        {
+          "label": "The built-in DJI Pilot 2 app",
+          "version": "will be updated with the Remote"
+        },
+        {
+          "label": "Firmware Upgrade Methods",
+          "version": "Controller firmware"
+        },
+        {
+          "label": "Intelligent Battery Station",
+          "version": "App (Connect the Battery Station"
+        }
+      ],
+      "whats_new": [
+        "Added Line Inspection when using Zenmuse H30 Series.",
+        "Added support for adjusting the gimbal pitch angle during Line Inspection when using Zenmuse H30 Series.",
+        "Added support for configuring Power Line Follow to continue after signal loss when using Zenmuse L2/L3."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Matrice 350 RTK",
+      "url": "https://enterprise.dji.com/matrice-350-rtk/downloads",
+      "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-350-rtk/RN/20260528/Matrice_350_RTK_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-05-28",
+      "listing_label": "Matrice 350 RTK - Release Notes",
+      "date": "2026-05-28",
+      "days_ago": 8,
+      "firmware": [
+        {
+          "label": "Aircraft Firmware",
+          "version": "v17.02.01.01"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v06.02.13.12"
+        },
+        {
+          "label": "DJI Pilot 2 App Android",
+          "version": "v17.0.0.26"
+        }
+      ],
+      "whats_new": [
+        "Fixed the issue where the aircraft failed to trigger RTH after signal loss when being controlled via MSDK Virtual Stick."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse L3",
+      "url": "https://enterprise.dji.com/zenmuse-l3/downloads",
+      "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/zenmuse-l3/RN/20260527/Zenmuse_L3_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-05-27",
+      "listing_label": "Zenmuse L3 - Release Notes",
+      "date": "2026-05-27",
+      "days_ago": 9,
+      "firmware": [
+        {
+          "label": "Zenmuse L3 Firmware",
+          "version": "v17.02.0002"
+        },
+        {
+          "label": "Matrice 400 Firmware",
+          "version": "v17.02.1204"
+        },
+        {
+          "label": "DJI RC Plus 2 Enterprise Firmware",
+          "version": "v01.64.0814"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.2.0.24"
+        },
+        {
+          "label": "DJI Assistant 2",
+          "version": "v2.1.20"
+        }
+      ],
+      "whats_new": [
+        "Optimized the LiDAR point cloud cross-cycle processing calculation.",
+        "Added the Camera Degree field to photo XMP metadata, distinguishing it from the existing Gimbal Degree field to improve data completeness."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Dock 3",
+      "url": "https://enterprise.dji.com/dock-3/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_3/RN_Known_Issue_List/20260508/DJI_Dock_3_Matrice_4D_Series_Release_Note_EN.pdf",
+      "language": "en",
+      "listing_date": "2026-05-08",
+      "listing_label": "DJI Dock 3 - Release Notes",
+      "date": "2026-05-08",
+      "days_ago": 28,
+      "firmware": [
+        {
+          "label": "Dock Firmware",
+          "version": "v17.01.05.06"
+        },
+        {
+          "label": "Aircraft Firmware",
+          "version": "v17.01.05.06"
+        },
+        {
+          "label": "Charging Hub Firmware",
+          "version": "v00.03.0012"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v01.64.08.14"
+        },
+        {
+          "label": "AS1 Firmware",
+          "version": "v01.00.01.11"
+        },
+        {
+          "label": "AL1 Firmware",
+          "version": "v01.00.29.85"
+        },
+        {
+          "label": "Obstacle Sensing Module Firmware",
+          "version": "v01.00.00.45"
+        },
+        {
+          "label": "D-RTK 3 Firmware",
+          "version": "v17.00.00.06"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.1.5.14"
+        },
+        {
+          "label": "DJI Enterprise App",
+          "version": "v2.5.3"
+        },
+        {
+          "label": "DJI Assistant 2 (Enterprise Series)",
+          "version": "v2.1.20"
+        }
+      ],
+      "whats_new": [
+        "DJI Enterprise: Added support for turning on/off the indicator of the dock landing pad.",
+        "DJI Pilot 2: Optimized the isothermal display in infrared mode. After manually selecting a target, the isothermal display will automatically adjust based on the target.",
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Matrice 4 Series",
+      "url": "https://enterprise.dji.com/matrice-4-series/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Matrice_4_Series/20260507/DJI_Matrice_4_Series_Release_Notes_EN.pdf",
+      "language": "en",
+      "listing_date": "2026-05-07",
+      "listing_label": "DJI Matrice 4 Series - Release Notes",
+      "date": "2026-05-07",
+      "days_ago": 29,
+      "firmware": [
+        {
+          "label": "Aircraft Firmware",
+          "version": "v17.01.05.16"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v01.64.08.12"
+        },
+        {
+          "label": "AS1 Firmware",
+          "version": "v01.00.01.11"
+        },
+        {
+          "label": "AL1 Firmware",
+          "version": "v01.00.29.85"
+        },
+        {
+          "label": "D-RTK 3 Firmware",
+          "version": "v17.01.05.02"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.1.5.14"
+        },
+        {
+          "label": "DJI Assistant 2",
+          "version": "v2.1.20"
+        }
+      ],
+      "whats_new": [
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Mavic 3 Enterprise",
+      "url": "https://enterprise.dji.com/mavic-3-enterprise/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Mavic_3_Enterprise/20260507/DJI_Mavic_3_Enterprise_Series_Release_Notes_EN.pdf",
+      "language": "en",
+      "listing_date": "2026-05-07",
+      "listing_label": "DJI Mavic 3 Enterprise - Release Notes",
+      "date": "2026-05-07",
+      "days_ago": 29,
+      "firmware": [
+        {
+          "label": "Aircraft Firmware",
+          "version": "v17.01.05.08 (DJI Mavic 3T Advanced)"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v02.01.08.04"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.1.5.15"
+        },
+        {
+          "label": "DJI Assistant 2",
+          "version": "v2.1.20"
+        }
+      ],
+      "whats_new": [
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse H30 Series",
+      "url": "https://enterprise.dji.com/zenmuse-h30-series/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/zenmuse_h30_series/RN/20260331/Zenmuse_H30_Series_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-03-31",
+      "listing_label": "Zenmuse H30 Series - Release Notes",
+      "date": "2026-03-31",
+      "days_ago": 66,
+      "firmware": [
+        {
+          "label": "Zenmuse H30 Series Firmware",
+          "version": "v10.06.01.06"
+        },
+        {
+          "label": "Firmware Upgrade Method",
+          "version": "microSD card"
+        },
+        {
+          "label": "Compatible Firmware and Software Required",
+          "version": "M400 Aircraft: v17.00.01.00"
+        },
+        {
+          "label": "DJI RC Plus 2 Remote Controller",
+          "version": "v01.64.08.06"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.0.0.40"
+        },
+        {
+          "label": "M350 RTK Aircraft",
+          "version": "v14.01.00.17"
+        },
+        {
+          "label": "M300 RTK Aircraft",
+          "version": "v64.01.00.09"
+        },
+        {
+          "label": "DJI RC Plus Remote Controller",
+          "version": "v06.02.13.12"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.0.0.26"
+        }
+      ],
+      "whats_new": [
+        "When used with the Matrice 400 aircraft, added support for MISB."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Manifold 3",
+      "url": "https://enterprise.dji.com/manifold-3/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Manifold_3/RN/20260331/Manifold_3_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-03-31",
+      "listing_label": "Manifold 3 - Release Notes",
+      "date": "2026-03-31",
+      "days_ago": 66,
+      "firmware": [
+        {
+          "label": "Manifold 3 Firmware",
+          "version": "v17.00.01.01"
+        },
+        {
+          "label": "DJI PSDK",
+          "version": "v3.16.0"
+        },
+        {
+          "label": "Matrice 400 Firmware",
+          "version": "v17.00.01.00"
+        },
+        {
+          "label": "Matrice 4 Series Firmware",
+          "version": "v17.00.00.01"
+        },
+        {
+          "label": "Matrice 4D Series Firmware",
+          "version": "v17.00.00.09"
+        },
+        {
+          "label": "DJI Dock 3 Firmware",
+          "version": "v17.00.00.09"
+        },
+        {
+          "label": "DJI RC Plus 2 Enterprise Firmware",
+          "version": "v01.64.08.06"
+        },
+        {
+          "label": "Zenmuse H30/H30T Firmware",
+          "version": "v10.06.01.06"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v17.0.0.40"
+        },
+        {
+          "label": "DJI Assistant 2",
+          "version": "v2.1.20"
+        },
+        {
+          "label": "DJI Enterprise App",
+          "version": "v2.6.0.46"
+        }
+      ],
+      "whats_new": [
+        "Added support for external device and network configurations with RTL8852BU and RTL88X2BU USB Wi- Fi adapters.",
+        "Added support for installing software dependencies without root permissions via the install.sh script."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI D-RTK 3",
+      "url": "https://enterprise.dji.com/d-rtk-3/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/d-rtk-3/RN/20260331/D-RTK 3_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2026-03-31",
+      "listing_label": "D-RTK 3 Multifunctional Station - Release Notes",
+      "date": "2026-03-31",
+      "days_ago": 66,
+      "firmware": [
+        {
+          "label": "D-RTK 3 Firmware",
+          "version": "v17.00.00.06"
+        },
+        {
+          "label": "Matrice 4 Series Firmware",
+          "version": "v17.00.00.01"
+        },
+        {
+          "label": "DJI RC Plus 2 Enterprise Firmware",
+          "version": "v01.64.08.06"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "V17.0.0.40"
+        },
+        {
+          "label": "DJI Assistant 2",
+          "version": "v2.1.20"
+        },
+        {
+          "label": "DJI Enterprise App",
+          "version": "v2.5.2"
+        },
+        {
+          "label": "DJI Dock 3 Firmware",
+          "version": "v17.00.00.09"
+        },
+        {
+          "label": "Matrice 4D Series Firmware",
+          "version": "v17.00.00.09"
+        }
+      ],
+      "whats_new": [
+        "D-RTK 3 Multifunctional Base Station",
+        "Added support for point stakeout to expand application scenarios.",
+        "Added support for voice prompts to provide key information in real time, improving operation efficiency.",
+        "Added support for configuring a shortcut button for point recording."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Dock 2",
+      "url": "https://enterprise.dji.com/dock-2/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_2/Release_Note/20260206/DJI_Dock_2_Release_Note_en1.pdf",
+      "language": "en",
+      "listing_date": "2026-02-06",
+      "listing_label": "DJI Dock 2 - Release Notes",
+      "date": "2026-02-06",
+      "days_ago": 119,
+      "firmware": [
+        {
+          "label": "Dock Firmware",
+          "version": "v 14.03.09.06"
+        },
+        {
+          "label": "Aircraft Firmware",
+          "version": "v 14.03.09.06"
+        },
+        {
+          "label": "Intelligent Flight Battery",
+          "version": "v 26.03.00.50"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v 02.01.07.04"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v 14.1.0.45"
+        },
+        {
+          "label": "DJI Assistant 2 (Enterprise Series)",
+          "version": "v 2.1.20"
+        }
+      ],
+      "whats_new": [
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse L2",
+      "url": "https://enterprise.dji.com/zenmuse-l2/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_L2/RN/20251104/Zenmuse_L2_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2025-11-04",
+      "listing_label": "Zenmuse L2 - Release Notes",
+      "date": "2025-11-04",
+      "days_ago": 213,
+      "firmware": [
+        {
+          "label": "Zenmuse L2 Firmware",
+          "version": "v06.00.01.04"
+        },
+        {
+          "label": "Firmware Upgrade Method",
+          "version": "microSD card"
+        },
+        {
+          "label": "Compatible Firmware and Software Required",
+          "version": "M400 Aircraft: v16.00.00.05"
+        },
+        {
+          "label": "DJI RC Plus 2 Remote Controller",
+          "version": "v01.64.07.02"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v16.0.0.49"
+        },
+        {
+          "label": "M350 RTK Aircraft",
+          "version": "v14.01.00.07"
+        },
+        {
+          "label": "M300 RTK Aircraft",
+          "version": "v64.01.00.09"
+        },
+        {
+          "label": "DJI RC Plus Remote Controller",
+          "version": "v06.02.13.11"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v14.3.0.35"
+        }
+      ],
+      "whats_new": [
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse S1",
+      "url": "https://enterprise.dji.com/zenmuse-s1/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2025-07-23",
+      "listing_label": "Zenmuse S1 - Release Notes",
+      "date": "2025-07-23",
+      "days_ago": 317,
+      "firmware": [
+        {
+          "label": "Zenmuse V1 Firmware",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Zenmuse S1 Firmware",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Firmware Upgrade Methods",
+          "version": "Offline firmware package update in DJI Pilot 2 App"
+        }
+      ],
+      "whats_new": [
+        " Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse V1",
+      "url": "https://enterprise.dji.com/zenmuse-v1/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_en.pdf",
+      "language": "en",
+      "listing_date": "2025-07-23",
+      "listing_label": "Zenmuse V1 - Release Notes",
+      "date": "2025-07-23",
+      "days_ago": 317,
+      "firmware": [
+        {
+          "label": "Zenmuse V1 Firmware",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Zenmuse S1 Firmware",
+          "version": "v02.00.00.08"
+        },
+        {
+          "label": "Firmware Upgrade Methods",
+          "version": "Offline firmware package update in DJI Pilot 2 App"
+        }
+      ],
+      "whats_new": [
+        " Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse P1",
+      "url": "https://enterprise.dji.com/zenmuse-p1/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_P1/20250610/DJI_P1_Release_Notes_en_20250610.pdf",
+      "language": "en",
+      "listing_date": "2025-06-10",
+      "listing_label": "Zenmuse P1 - Release Notes",
+      "date": "2025-06-10",
+      "days_ago": 360,
+      "firmware": [
+        {
+          "label": "DJI P1 Firmware",
+          "version": "v10.01.02.01"
+        },
+        {
+          "label": "Firmware Upgrade Method",
+          "version": "SD card"
+        }
+      ],
+      "whats_new": [
+        "Added support for Matrice 400.",
+        "Fixed some known issues."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Dock",
+      "url": "https://enterprise.dji.com/dock/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/m30_series_dock_bundle/Release Note/20240815/DJI_Dock_Release_Notes_en_20240815_1.pdf",
+      "language": "en",
+      "listing_date": "2024-08-15",
+      "listing_label": "DJI Dock - Release Notes",
+      "date": "2024-08-15",
+      "days_ago": 659,
+      "firmware": [
+        {
+          "label": "Dock Firmware",
+          "version": "V10.01.0205*"
+        },
+        {
+          "label": "Aircraft Firmware",
+          "version": "V10.01.05.04*"
+        },
+        {
+          "label": "Intelligent Flight Battery",
+          "version": "V02.00.20.58"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "V05.02.1106*"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "V10.1.0.30"
+        },
+        {
+          "label": "DJI Assistant 2 (Enterprise Series)",
+          "version": "V2.1.12"
+        },
+        {
+          "label": "DJI Dock",
+          "version": "DJI FlightHub 2 / DJI Assistant 2"
+        },
+        {
+          "label": "Aircraft",
+          "version": "DJI FlightHub 2 / DJI Assistant 2 / App"
+        }
+      ],
+      "whats_new": [
+        "DJI Dock",
+        "Added support for cancelling flight tasks, if the RTK data fails to converge for an extended period of time.",
+        "Improved system stability."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse H20N",
+      "url": "https://enterprise.dji.com/zenmuse-h20n/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20N/RN/20230518/Zenmuse_H20N_Release_Notes_en_20230518.pdf",
+      "language": "en",
+      "listing_date": "2023-05-18",
+      "listing_label": "Zenmuse H20N - Release Notes",
+      "date": "2023-05-18",
+      "days_ago": 1114,
+      "firmware": [
+        {
+          "label": "Zenmuse H20N Firmware",
+          "version": "v07.00.01.05"
+        },
+        {
+          "label": "Compatible Firmware and Software Required",
+          "version": "M300 RTK + DJI Smart Controller Enterprise"
+        },
+        {
+          "label": "Aircraft Firmware",
+          "version": "v07.00.01.00"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v07.00.01.00"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v7.0.1.1"
+        }
+      ],
+      "whats_new": [
+        "Added support for M350 RTK."
+      ],
+      "parse_warnings": []
+    },
+    {
+      "product": "DJI Zenmuse H20 Series",
+      "url": "https://enterprise.dji.com/zenmuse-h20-series/downloads",
+      "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20_Series/20230518/Zenmuse_H20_Series_Release_Notes_EN.pdf",
+      "language": "en",
+      "listing_date": "2023-05-18",
+      "listing_label": "Zenmuse H20 Series - Release Notes",
+      "date": "2023-05-18",
+      "days_ago": 1114,
+      "firmware": [
+        {
+          "label": "Zenmuse H20 Series Firmware",
+          "version": "v07.00.01.05"
+        }
+      ],
+      "whats_new": [
+        " Added support for M350 RTK.  Fixed issue: the app does not have sound when taking panoramic photos."
+      ],
+      "parse_warnings": []
+    }
+  ],
+  "errors": [],
+  "cached": false,
+  "static": true
+}

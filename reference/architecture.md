@@ -11,10 +11,14 @@ build path for public hosting. No database and no JS framework.
 ```
 Browser
   └─ GET /                         main.index()           -> static/index.html
+  └─ GET /data/releases-<lang>.json main.get_release_snapshot()
+         │
+         └─ return app/data snapshot immediately, when present
   └─ GET /api/releases[?lang=en|zh][&force=1]   main.get_releases()
          │
          ├─ cache hit (<10 min, no force)? -> return cached JSON (cached:true)
-         │
+         ├─ app/data snapshot exists? -> return saved JSON immediately
+         │       and start one background refresh task for that language
          └─ _build_response()
                 ├─ _load_products()                       reads app/products.json
                 └─ for each product, in a thread pool:
@@ -23,8 +27,13 @@ Browser
                            └─ pdf_parser.parse_release_pdf()  pdfplumber extract
                 ├─ split into releases[] / errors[]
                 ├─ sort releases by days_ago (None last)
-                └─ return JSON (also stored in cache for 10 min)
+                └─ return JSON (also stored in cache for 10 min and app/data)
 ```
+
+The local app uses stale-while-revalidate behavior. Once a language has any
+saved snapshot, visitor requests do not wait for DJI scraping or PDF parsing;
+the UI can render the saved payload while `/api/releases` refreshes it in the
+background.
 
 ### Cloudflare Pages public site
 
@@ -33,6 +42,7 @@ GitHub Actions (daily)
   └─ scripts/build_static_site.py
         ├─ _build_response("en") -> public/data/releases-en.json
         ├─ _build_response("zh") -> public/data/releases-zh.json
+        ├─ seed src/app/data/releases-{en,zh}.json for local/macOS first-open
         └─ copy static/index.html -> public/index.html
 
 Browser on pages.dev
@@ -52,6 +62,10 @@ reloads the static JSON; new data appears after the next scheduled deploy.
   the app works regardless of where it's launched from.
 - In-process cache: module-level `_cache` keyed by language (`en` / `zh`),
   `CACHE_TTL_SECONDS = 600`.
+- Persistent snapshots: `app/data/releases-en.json` and
+  `app/data/releases-zh.json`. They are returned immediately when present, and
+  `/api/releases` starts a non-blocking refresh task instead of making the user
+  wait for the full scrape.
 - Concurrency: `_build_response()` runs each product through
   `loop.run_in_executor(None, _process_product, ...)` — i.e. the default thread
   pool — because `scraper`/`pdf_parser` are synchronous and I/O-bound. All
