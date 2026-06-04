@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DJI ENT Release Note Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --border: #e3e7ee;
+      --text: #1c2230;
+      --muted: #6b7280;
+      --accent: #0b66ff;
+      --accent-dark: #084ec2;
+      --green: #16a34a;
+      --yellow: #d97706;
+      --red: #dc2626;
+      --gray: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 18px;
+    }
+    header .byline {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    header .meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--accent);
+      border: 1px solid #d1e1ff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: #eef4ff;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      min-width: 70px;
+    }
+    .chip {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.1s;
+      user-select: none;
+    }
+    .chip:hover {
+      border-color: var(--accent);
+    }
+    .chip.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .chip.product {
+      font-size: 12px;
+    }
+    .link-btn {
+      background: transparent;
+      border: 0;
+      color: var(--accent);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 4px 6px;
+    }
+    .link-btn:hover { text-decoration: underline; }
+
+    /* Layout */
+    main {
+      padding: 20px 24px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .empty, .loading {
+      text-align: center;
+      color: var(--muted);
+      padding: 60px 0;
+    }
+    .spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid #cbd5e1;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 24px 0 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .card-head h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+    .badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: var(--text);
+    }
+    .badge.green { background: #dcfce7; color: var(--green); }
+    .badge.yellow { background: #fef3c7; color: var(--yellow); }
+    .badge.gray { background: #e5e7eb; color: var(--muted); }
+    .badge.red { background: #fee2e2; color: var(--red); }
+    .meta-row {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 4px 0 12px;
+    }
+    .meta-row a { color: var(--accent); text-decoration: none; }
+    .meta-row a:hover { text-decoration: underline; }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef4ff;
+      border: 1px solid #d1e1ff;
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin: 4px 0 12px;
+    }
+    .pdf-link:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .firmware-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 8px 0 16px;
+    }
+    .firmware-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f1f3f7;
+    }
+    .firmware-table td.label {
+      color: var(--muted);
+      width: 45%;
+    }
+    .firmware-table td.value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .whats-new {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .whats-new li {
+      margin-bottom: 6px;
+    }
+
+    .warning {
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-top: 12px;
+    }
+    .error-card {
+      border-left: 3px solid var(--red);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 id="app-title">DJI ENT Release Note Monitor</h1>
+      <div class="byline" id="byline">Developed by DJI Enterprise EU GKAS team</div>
+      <div class="meta" id="header-meta">Loading…</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-secondary" id="language-btn">中英切换</button>
+      <button class="btn-primary" id="refresh-btn">Refresh now</button>
+    </div>
+  </header>
+
+  <div class="filter-bar" id="filter-bar" style="display:none">
+    <div class="filter-row">
+      <span class="filter-label" data-i18n="windowLabel">Window</span>
+      <button class="chip" data-days="7" data-i18n="oneWeek">1 week</button>
+      <button class="chip" data-days="14" data-i18n="twoWeeks">2 weeks</button>
+      <button class="chip active" data-days="30" data-i18n="thirtyDays">30 days</button>
+      <button class="chip" data-days="60" data-i18n="twoMonths">2 months</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label" data-i18n="productsLabel">Products</span>
+      <button class="link-btn" id="select-all" data-i18n="all">All</button>
+      <button class="link-btn" id="select-none" data-i18n="none">None</button>
+      <div class="filter-row" id="product-chips" style="gap:6px;"></div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p id="loading-text">Loading daily release data…</p>
+    </div>
+  </main>
+
+  <script>
+    const main = document.getElementById('main');
+    const appTitle = document.getElementById('app-title');
+    const byline = document.getElementById('byline');
+    const headerMeta = document.getElementById('header-meta');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const languageBtn = document.getElementById('language-btn');
+    const filterBar = document.getElementById('filter-bar');
+    const productChipsEl = document.getElementById('product-chips');
+
+    const copy = {
+      en: {
+        title: 'DJI ENT Release Note Monitor',
+        byline: 'Developed by DJI Enterprise EU GKAS team',
+        loadingInitial: 'Loading daily release data…',
+        scraping: 'Loading daily release data…',
+        rescraping: 'Reloading daily release data…',
+        refresh: 'Reload data',
+        language: '中英切换：English',
+        windowLabel: 'Window',
+        productsLabel: 'Products',
+        oneWeek: '1 week',
+        twoWeeks: '2 weeks',
+        thirtyDays: '30 days',
+        twoMonths: '2 months',
+        all: 'All',
+        none: 'None',
+        unknownDate: 'unknown date',
+        daysAgo: days => `${days} days ago`,
+        released: 'Released',
+        productPage: 'Product page ↗',
+        openPdf: '📄 Open Release Notes PDF',
+        whatsNew: "What's new",
+        sectionTitle: (days, shown, total) => `Updates in the last ${days} days · ${shown} of ${total} products selected`,
+        noUpdates: days => `No selected products have released firmware in the last ${days} days.`,
+        errors: count => `Errors (${count})`,
+        headerMeta: data => `Today: ${data.today} · Last updated: ${data.generated_at}${data.static ? ' · daily static data' : (data.cached ? ' · cached' : ' · fresh')}`,
+        failed: msg => `Failed to load: ${msg}`,
+      },
+      zh: {
+        title: 'DJI ENT 发布记录监控',
+        byline: '由 DJI Enterprise EU GKAS team 开发',
+        loadingInitial: '正在加载每日发布数据…',
+        scraping: '正在加载每日发布数据…',
+        rescraping: '正在重新加载每日发布数据…',
+        refresh: '重新加载数据',
+        language: '中英切换：中文',
+        windowLabel: '时间',
+        productsLabel: '产品',
+        oneWeek: '1周',
+        twoWeeks: '2周',
+        thirtyDays: '30天',
+        twoMonths: '2个月',
+        all: '全选',
+        none: '全不选',
+        unknownDate: '日期未知',
+        daysAgo: days => `${days} 天前`,
+        released: '发布日期',
+        productPage: '产品页面 ↗',
+        openPdf: '📄 打开发布记录 PDF',
+        whatsNew: '本次更新',
+        sectionTitle: (days, shown, total) => `最近 ${days} 天的更新 · 已选产品中 ${shown}/${total} 个有记录`,
+        noUpdates: days => `最近 ${days} 天内，所选产品没有发布固件更新。`,
+        errors: count => `错误 (${count})`,
+        headerMeta: data => `今天：${data.today} · 最后更新：${data.generated_at}${data.static ? ' · 每日静态数据' : (data.cached ? ' · 缓存' : ' · 最新')}`,
+        failed: msg => `加载失败：${msg}`,
+      },
+    };
+
+    // State
+    let lastData = null;
+    const filters = {
+      windowDays: 30,
+      products: new Set(),  // empty after first load until populated; filled with all product names
+    };
+    let currentLang = localStorage.getItem('dji-release-lang') || 'en';
+
+    function t(key) {
+      return copy[currentLang][key];
+    }
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    function freshnessBadge(daysAgo) {
+      if (daysAgo == null) return `<span class="badge gray">${esc(t('unknownDate'))}</span>`;
+      if (daysAgo <= 7)  return `<span class="badge green">${esc(t('daysAgo')(daysAgo))}</span>`;
+      if (daysAgo <= 30) return `<span class="badge yellow">${esc(t('daysAgo')(daysAgo))}</span>`;
+      return `<span class="badge gray">${esc(t('daysAgo')(daysAgo))}</span>`;
+    }
+
+    function renderCard(r) {
+      const firmwareRows = (r.firmware || []).map(f =>
+        `<tr><td class="label">${esc(f.label)}</td><td class="value">${esc(f.version)}</td></tr>`
+      ).join('');
+
+      const whatsNew = (r.whats_new || []).map(b => `<li>${esc(b)}</li>`).join('');
+
+      const warnings = (r.parse_warnings || []).map(w =>
+        `<div class="warning">⚠ ${esc(w)}</div>`
+      ).join('');
+
+      return `
+        <div class="card">
+          <div class="card-head">
+            <h2>${esc(r.product)}</h2>
+            <div class="badges">${freshnessBadge(r.days_ago)}</div>
+          </div>
+          <div class="meta-row">
+            ${esc(t('released'))} <strong>${esc(r.date || t('unknownDate'))}</strong>
+            · <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(t('productPage'))}</a>
+          </div>
+          <a class="pdf-link" href="${esc(r.source_pdf)}" target="_blank" rel="noopener">
+            ${esc(t('openPdf'))}
+          </a>
+          ${firmwareRows ? `<table class="firmware-table"><tbody>${firmwareRows}</tbody></table>` : ''}
+          ${whatsNew ? `<h3 style="margin:14px 0 6px;font-size:14px;">${esc(t('whatsNew'))}</h3><ul class="whats-new">${whatsNew}</ul>` : ''}
+          ${warnings}
+        </div>
+      `;
+    }
+
+    function renderError(r) {
+      return `
+        <div class="card error-card">
+          <div class="card-head">
+            <h2>${esc(r.product)}</h2>
+            <span class="badge red">error</span>
+          </div>
+          <div class="meta-row">
+            <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a>
+          </div>
+          <div class="warning">${esc(r.error)}</div>
+        </div>
+      `;
+    }
+
+    function applyAndRender() {
+      if (!lastData) return;
+
+      const window = filters.windowDays;
+      const sel = filters.products;
+
+      const matching = (lastData.releases || []).filter(r =>
+        sel.has(r.product) &&
+        r.days_ago != null &&
+        r.days_ago >= 0 &&
+        r.days_ago <= window
+      );
+
+      const filteredErrors = (lastData.errors || []).filter(r => sel.has(r.product));
+
+      const parts = [];
+      parts.push(`<div class="section-title">${esc(t('sectionTitle')(window, matching.length, lastData.releases.length))}</div>`);
+
+      if (matching.length === 0) {
+        parts.push(`<div class="empty">${esc(t('noUpdates')(window))}</div>`);
+      } else {
+        for (const r of matching) parts.push(renderCard(r));
+      }
+
+      if (filteredErrors.length > 0) {
+        parts.push(`<div class="section-title">${esc(t('errors')(filteredErrors.length))}</div>`);
+        for (const r of filteredErrors) parts.push(renderError(r));
+      }
+
+      main.innerHTML = parts.join('');
+    }
+
+    function renderProductChips() {
+      const order = lastData.product_order || [];
+      productChipsEl.innerHTML = order.map(name => {
+        const active = filters.products.has(name) ? 'active' : '';
+        return `<button class="chip product ${active}" data-product="${esc(name)}">${esc(name)}</button>`;
+      }).join('');
+    }
+
+    function wireFilters() {
+      // Window buttons
+      filterBar.querySelectorAll('.chip[data-days]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBar.querySelectorAll('.chip[data-days]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filters.windowDays = parseInt(btn.dataset.days, 10);
+          applyAndRender();
+        });
+      });
+
+      // Product chips (event delegation)
+      productChipsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip.product');
+        if (!btn) return;
+        const name = btn.dataset.product;
+        if (filters.products.has(name)) {
+          filters.products.delete(name);
+          btn.classList.remove('active');
+        } else {
+          filters.products.add(name);
+          btn.classList.add('active');
+        }
+        applyAndRender();
+      });
+
+      // Select all / none
+      document.getElementById('select-all').addEventListener('click', () => {
+        for (const name of lastData.product_order || []) filters.products.add(name);
+        renderProductChips();
+        applyAndRender();
+      });
+      document.getElementById('select-none').addEventListener('click', () => {
+        filters.products.clear();
+        renderProductChips();
+        applyAndRender();
+      });
+    }
+
+    let filtersWired = false;
+
+    function applyStaticCopy() {
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      document.title = t('title');
+      appTitle.textContent = t('title');
+      byline.textContent = t('byline');
+      refreshBtn.textContent = t('refresh');
+      languageBtn.textContent = t('language');
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (copy[currentLang][key]) el.textContent = copy[currentLang][key];
+      });
+    }
+
+    async function fetchReleaseData(force) {
+      const staticUrl = `data/releases-${currentLang}.json${force ? '?t=' + Date.now() : ''}`;
+      try {
+        const staticRes = await fetch(staticUrl);
+        if (staticRes.ok) return staticRes.json();
+      } catch (_) {
+        // Local FastAPI app builds do not serve the Pages data directory.
+      }
+
+      const params = new URLSearchParams({ lang: currentLang });
+      if (force) params.set('force', '1');
+      const apiRes = await fetch('/api/releases?' + params.toString());
+      if (!apiRes.ok) throw new Error('HTTP ' + apiRes.status);
+      return apiRes.json();
+    }
+
+    async function load(force) {
+      applyStaticCopy();
+      refreshBtn.disabled = true;
+      languageBtn.disabled = true;
+      main.innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>${esc(force ? t('rescraping') : t('scraping'))}</p>
+        </div>
+      `;
+      try {
+        const data = await fetchReleaseData(force);
+        lastData = data;
+
+        // Default: select all products
+        if (filters.products.size === 0) {
+          for (const name of data.product_order || []) filters.products.add(name);
+        }
+
+        filterBar.style.display = '';
+        renderProductChips();
+        if (!filtersWired) { wireFilters(); filtersWired = true; }
+
+        headerMeta.textContent = t('headerMeta')(data);
+
+        applyAndRender();
+      } catch (e) {
+        main.innerHTML = `<div class="empty" style="color:var(--red)">${esc(t('failed')(e.message))}</div>`;
+      } finally {
+        refreshBtn.disabled = false;
+        languageBtn.disabled = false;
+      }
+    }
+
+    refreshBtn.addEventListener('click', () => load(true));
+    languageBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      localStorage.setItem('dji-release-lang', currentLang);
+      lastData = null;
+      load(false);
+    });
+    document.addEventListener('DOMContentLoaded', () => load(false));
+    applyStaticCopy();
+  </script>
+</body>
+</html>

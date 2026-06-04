@@ -1,0 +1,19 @@
+[
+  { "name": "DJI Matrice 400",          "url": "https://enterprise.dji.com/matrice-400/downloads" },
+  { "name": "DJI Matrice 350 RTK",      "url": "https://enterprise.dji.com/matrice-350-rtk/downloads" },
+  { "name": "DJI Matrice 4 Series",     "url": "https://enterprise.dji.com/matrice-4-series/downloads" },
+  { "name": "DJI Mavic 3 Enterprise",   "url": "https://enterprise.dji.com/mavic-3-enterprise/downloads" },
+  { "name": "DJI Dock 3",               "url": "https://enterprise.dji.com/dock-3/downloads" },
+  { "name": "DJI Dock 2",               "url": "https://enterprise.dji.com/dock-2/downloads" },
+  { "name": "DJI Dock",                 "url": "https://enterprise.dji.com/dock/downloads" },
+  { "name": "DJI Zenmuse L3",           "url": "https://enterprise.dji.com/zenmuse-l3/downloads" },
+  { "name": "DJI Zenmuse S1",           "url": "https://enterprise.dji.com/zenmuse-s1/downloads" },
+  { "name": "DJI Zenmuse V1",           "url": "https://enterprise.dji.com/zenmuse-v1/downloads" },
+  { "name": "DJI Zenmuse H30 Series",   "url": "https://enterprise.dji.com/zenmuse-h30-series/downloads" },
+  { "name": "DJI Zenmuse L2",           "url": "https://enterprise.dji.com/zenmuse-l2/downloads" },
+  { "name": "DJI Zenmuse H20N",         "url": "https://enterprise.dji.com/zenmuse-h20n/downloads" },
+  { "name": "DJI Zenmuse P1",           "url": "https://enterprise.dji.com/zenmuse-p1/downloads" },
+  { "name": "DJI Zenmuse H20 Series",   "url": "https://enterprise.dji.com/zenmuse-h20-series/downloads" },
+  { "name": "DJI Manifold 3",           "url": "https://enterprise.dji.com/manifold-3/downloads" },
+  { "name": "DJI D-RTK 3",              "url": "https://enterprise.dji.com/d-rtk-3/downloads" }
+]
