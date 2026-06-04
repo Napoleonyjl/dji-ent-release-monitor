@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T01:05:51",
+  "generated_at": "2026-06-05T01:46:26",
   "today": "2026-06-05",
   "language": "zh",
   "product_order": [
@@ -544,10 +544,11 @@
           "version": "V10.01.02.01"
         }
       ],
-      "whats_new": [],
-      "parse_warnings": [
-        "Could not find a 'What's new' section"
-      ]
+      "whats_new": [
+        "新增支持Matrice 400。",
+        "修复部分已知问题。"
+      ],
+      "parse_warnings": []
     },
     {
       "product": "DJI Dock",
@@ -623,10 +624,10 @@
           "version": "V7.0.1.1"
         }
       ],
-      "whats_new": [],
-      "parse_warnings": [
-        "Could not find a 'What's new' section"
-      ]
+      "whats_new": [
+        "新增对M350 RTK飞行器的支持。"
+      ],
+      "parse_warnings": []
     },
     {
       "product": "DJI Zenmuse H20 Series",
@@ -660,7 +661,8 @@
         }
       ],
       "whats_new": [
-        " 新增对M350 RTK飞行器的支持。  修复全景拍照过程中App没有拍照声音的问题。"
+        "新增对M350 RTK飞行器的支持。",
+        "修复全景拍照过程中App没有拍照声音的问题。"
       ],
       "parse_warnings": []
     }

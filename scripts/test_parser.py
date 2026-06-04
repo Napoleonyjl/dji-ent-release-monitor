@@ -47,6 +47,29 @@ Bug Fixes
 - Fixed an occasional RTK dropout.
 """
 
+SAMPLE_PRIVATE_BULLETS = """\
+Zenmuse H20 Series Release Notes
+Date: 2023.05.18
+Firmware: v07.00.01.05
+
+What's new
+ Added support for M350 RTK.
+ Fixed some known issues.
+
+Notes
+ Make sure all firmware is current.
+"""
+
+SAMPLE_CN_WHATS_NEW = """\
+Zenmuse H20N 发布记录
+发布日期： 2023.05.18
+Zenmuse H20N固件版本： v07.00.01.05
+更新了什么
+ 新增对M350 RTK飞行器的支持。
+注意
+ 务必确保固件均升级至最新版本。
+"""
+
 failures: list[str] = []
 
 
@@ -83,6 +106,15 @@ def main() -> int:
           f"got {wn}")
     check("whats_new stops before Bug Fixes",
           all("RTK dropout" not in b for b in wn), f"got {wn}")
+
+    wn_private = _parse_whats_new(SAMPLE_PRIVATE_BULLETS.splitlines())
+    check("private-use bullet glyphs are removed",
+          wn_private == ["Added support for M350 RTK.", "Fixed some known issues."],
+          f"got {wn_private}")
+
+    wn_cn = _parse_whats_new(SAMPLE_CN_WHATS_NEW.splitlines())
+    check("Chinese heading '更新了什么' is parsed",
+          wn_cn == ["新增对M350 RTK飞行器的支持。"], f"got {wn_cn}")
 
     print()
     if failures:

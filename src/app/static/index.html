@@ -422,10 +422,6 @@
 
       const whatsNew = (r.whats_new || []).map(b => `<li>${esc(b)}</li>`).join('');
 
-      const warnings = (r.parse_warnings || []).map(w =>
-        `<div class="warning">⚠ ${esc(w)}</div>`
-      ).join('');
-
       return `
         <div class="card">
           <div class="card-head">
@@ -441,7 +437,6 @@
           </a>
           ${firmwareRows ? `<table class="firmware-table"><tbody>${firmwareRows}</tbody></table>` : ''}
           ${whatsNew ? `<h3 style="margin:14px 0 6px;font-size:14px;">${esc(t('whatsNew'))}</h3><ul class="whats-new">${whatsNew}</ul>` : ''}
-          ${warnings}
         </div>
       `;
     }

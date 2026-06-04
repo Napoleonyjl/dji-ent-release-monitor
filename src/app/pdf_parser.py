@@ -54,8 +54,8 @@ VERSION_VALUE_RE = re.compile(r"\bv\d[\w.\-]*", re.IGNORECASE)
 # Handles ASCII apostrophe ', curly apostrophe (U+2019), left single quote
 # (U+2018), and the variant where the apostrophe is dropped entirely.
 WHATS_NEW_HEADING_RE = re.compile(r"^what['’‘]?s\s+\w+", re.IGNORECASE)
-CN_WHATS_NEW_HEADING_RE = re.compile(r"^(本次更新|更新内容|新增功能|主要更新)")
-BULLET_PREFIX_RE = re.compile(r"^[•\-·*■◦⚫]\s*")
+CN_WHATS_NEW_HEADING_RE = re.compile(r"^(本次更新|更新内容|更新了什么|新增功能|主要更新)")
+BULLET_PREFIX_RE = re.compile(r"^[•\-·*■◦⚫\uf06c\uf0b7]\s*")
 DOCK3_MATRICE4D_TITLE_RE = re.compile(r"3\s*/\s*Matrice\s+4D", re.IGNORECASE)
 DOCK3_MATRICE4D_LABELS_ZH = [
     "机场固件版本",

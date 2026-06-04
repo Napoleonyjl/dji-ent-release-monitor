@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T01:05:47",
+  "generated_at": "2026-06-05T01:46:22",
   "today": "2026-06-05",
   "language": "en",
   "product_order": [
@@ -615,7 +615,7 @@
         }
       ],
       "whats_new": [
-        " Fixed some known issues."
+        "Fixed some known issues."
       ],
       "parse_warnings": []
     },
@@ -643,7 +643,7 @@
         }
       ],
       "whats_new": [
-        " Fixed some known issues."
+        "Fixed some known issues."
       ],
       "parse_warnings": []
     },
@@ -774,7 +774,8 @@
         }
       ],
       "whats_new": [
-        " Added support for M350 RTK.  Fixed issue: the app does not have sound when taking panoramic photos."
+        "Added support for M350 RTK.",
+        "Fixed issue: the app does not have sound when taking panoramic photos."
       ],
       "parse_warnings": []
     }
