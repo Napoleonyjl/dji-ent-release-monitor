@@ -281,7 +281,7 @@
   <header>
     <div>
       <h1 id="app-title">DJI ENT Release Note Monitor</h1>
-      <div class="byline" id="byline">Developed by DJI Enterprise EU GKAS team</div>
+      <div class="byline" id="byline">Developed by DJI Enterprise EU Team</div>
       <div class="meta" id="header-meta">Loading…</div>
     </div>
     <div class="header-actions">
@@ -328,7 +328,7 @@
     const copy = {
       en: {
         title: 'DJI ENT Release Note Monitor',
-        byline: 'Developed by DJI Enterprise EU GKAS team',
+        byline: 'Developed by DJI Enterprise EU Team',
         loadingInitial: 'Loading daily release data…',
         scraping: 'Loading daily release data…',
         rescraping: 'Updating in the background…',
@@ -358,7 +358,7 @@
       },
       zh: {
         title: 'DJI ENT 发布记录监控',
-        byline: '由 DJI Enterprise EU GKAS team 开发',
+        byline: '由 DJI Enterprise EU Team 开发',
         loadingInitial: '正在加载每日发布数据…',
         scraping: '正在加载每日发布数据…',
         rescraping: '正在后台更新…',
@@ -395,7 +395,48 @@
       windowDays: 30,
       products: new Set(),  // empty after first load until populated; filled with all product names
     };
-    let currentLang = localStorage.getItem('dji-release-lang') || 'en';
+    function readStoredLang() {
+      try {
+        const value = window.localStorage && window.localStorage.getItem('dji-release-lang');
+        return value === 'zh' || value === 'en' ? value : 'en';
+      } catch (_) {
+        return 'en';
+      }
+    }
+
+    function writeStoredLang(lang) {
+      try {
+        if (window.localStorage) window.localStorage.setItem('dji-release-lang', lang);
+      } catch (_) {
+        // Some managed/private browser contexts block localStorage.
+      }
+    }
+
+    async function readJsonResponse(res) {
+      const contentType = res.headers.get('content-type') || '';
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!contentType.toLowerCase().includes('application/json')) {
+        throw new Error('Expected JSON, got ' + (contentType || 'unknown content type'));
+      }
+      return res.json();
+    }
+
+    function embeddedReleaseData() {
+      const snapshots = window.__DJI_RELEASE_SNAPSHOTS__ || {};
+      const data = snapshots[currentLang];
+      return data && typeof data === 'object' ? data : null;
+    }
+
+    async function fetchJsonIfAvailable(url) {
+      try {
+        const res = await fetch(url);
+        return await readJsonResponse(res);
+      } catch (_) {
+        return null;
+      }
+    }
+
+    let currentLang = readStoredLang();
     const backgroundRefreshStarted = new Set();
 
     function t(key) {
@@ -551,37 +592,31 @@
     }
 
     async function fetchReleaseData(force) {
-      const params = new URLSearchParams({ lang: currentLang });
-      if (force) params.set('force', '1');
-      const staticUrl = `data/releases-${currentLang}.json${force ? '?t=' + Date.now() : ''}`;
+      const embedded = embeddedReleaseData();
+      if (embedded) return embedded;
 
-      if (force) {
-        try {
-          const apiRes = await fetch('/api/releases?' + params.toString());
-          if (apiRes.ok) return apiRes.json();
-        } catch (_) {
-          // Static Pages deployments do not have the FastAPI endpoint.
-        }
+      const cacheBust = force ? '?t=' + Date.now() : '';
+      for (const staticUrl of [
+        `data/releases-${currentLang}.json${cacheBust}`,
+        `./data/releases-${currentLang}.json${cacheBust}`,
+      ]) {
+        const data = await fetchJsonIfAvailable(staticUrl);
+        if (data) return data;
       }
 
-      try {
-        const staticRes = await fetch(staticUrl);
-        if (staticRes.ok) return staticRes.json();
-      } catch (_) {
-        // Local FastAPI app builds may not have generated a snapshot yet.
-      }
+      const apiQuery = `lang=${encodeURIComponent(currentLang)}${force ? '&force=1' : ''}`;
+      const apiData = await fetchJsonIfAvailable(`/api/releases?${apiQuery}`);
+      if (apiData) return apiData;
 
-      const apiRes = await fetch('/api/releases?' + params.toString());
-      if (!apiRes.ok) throw new Error('HTTP ' + apiRes.status);
-      return apiRes.json();
+      throw new Error('No release JSON found');
     }
 
     async function triggerBackgroundRefresh() {
       try {
-        const params = new URLSearchParams({ lang: currentLang });
-        const apiRes = await fetch('/api/releases?' + params.toString());
-        if (!apiRes.ok) return;
-        const data = await apiRes.json();
+        if (embeddedReleaseData()) return;
+        const apiQuery = `lang=${encodeURIComponent(currentLang)}`;
+        const data = await fetchJsonIfAvailable(`/api/releases?${apiQuery}`);
+        if (!data) return;
         if (data.generated_at && (!lastData || data.generated_at !== lastData.generated_at || data.updating !== lastData.updating)) {
           lastData = data;
           headerMeta.textContent = t('headerMeta')(data);
@@ -652,7 +687,7 @@
     refreshBtn.addEventListener('click', () => load(true));
     languageBtn.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
-      localStorage.setItem('dji-release-lang', currentLang);
+      writeStoredLang(currentLang);
       lastData = null;
       if (refreshTimer) clearTimeout(refreshTimer);
       load(false);
