@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-05T17:46:25",
-  "today": "2026-06-05",
+  "generated_at": "2026-06-10T02:47:25",
+  "today": "2026-06-10",
   "language": "en",
   "product_order": [
     "DJI Matrice 400",
@@ -30,7 +30,7 @@
       "listing_date": "2026-05-28",
       "listing_label": "DJI Matrice 400 - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 8,
+      "days_ago": 13,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -140,7 +140,7 @@
       "listing_date": "2026-05-28",
       "listing_label": "Matrice 350 RTK - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 8,
+      "days_ago": 13,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -168,7 +168,7 @@
       "listing_date": "2026-05-27",
       "listing_label": "Zenmuse L3 - Release Notes",
       "date": "2026-05-27",
-      "days_ago": 9,
+      "days_ago": 14,
       "firmware": [
         {
           "label": "Zenmuse L3 Firmware",
@@ -205,7 +205,7 @@
       "listing_date": "2026-05-08",
       "listing_label": "DJI Dock 3 - Release Notes",
       "date": "2026-05-08",
-      "days_ago": 28,
+      "days_ago": 33,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -267,7 +267,7 @@
       "listing_date": "2026-05-07",
       "listing_label": "DJI Matrice 4 Series - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 29,
+      "days_ago": 34,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -311,7 +311,7 @@
       "listing_date": "2026-05-07",
       "listing_label": "DJI Mavic 3 Enterprise - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 29,
+      "days_ago": 34,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -343,7 +343,7 @@
       "listing_date": "2026-03-31",
       "listing_label": "Zenmuse H30 Series - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 66,
+      "days_ago": 71,
       "firmware": [
         {
           "label": "Zenmuse H30 Series Firmware",
@@ -395,7 +395,7 @@
       "listing_date": "2026-03-31",
       "listing_label": "Manifold 3 - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 66,
+      "days_ago": 71,
       "firmware": [
         {
           "label": "Manifold 3 Firmware",
@@ -456,7 +456,7 @@
       "listing_date": "2026-03-31",
       "listing_label": "D-RTK 3 Multifunctional Station - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 66,
+      "days_ago": 71,
       "firmware": [
         {
           "label": "D-RTK 3 Firmware",
@@ -507,7 +507,7 @@
       "listing_date": "2026-02-06",
       "listing_label": "DJI Dock 2 - Release Notes",
       "date": "2026-02-06",
-      "days_ago": 119,
+      "days_ago": 124,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -547,7 +547,7 @@
       "listing_date": "2025-11-04",
       "listing_label": "Zenmuse L2 - Release Notes",
       "date": "2025-11-04",
-      "days_ago": 213,
+      "days_ago": 218,
       "firmware": [
         {
           "label": "Zenmuse L2 Firmware",
@@ -599,7 +599,7 @@
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse S1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 317,
+      "days_ago": 322,
       "firmware": [
         {
           "label": "Zenmuse V1 Firmware",
@@ -627,7 +627,7 @@
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse V1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 317,
+      "days_ago": 322,
       "firmware": [
         {
           "label": "Zenmuse V1 Firmware",
@@ -655,7 +655,7 @@
       "listing_date": "2025-06-10",
       "listing_label": "Zenmuse P1 - Release Notes",
       "date": "2025-06-10",
-      "days_ago": 360,
+      "days_ago": 365,
       "firmware": [
         {
           "label": "DJI P1 Firmware",
@@ -680,7 +680,7 @@
       "listing_date": "2024-08-15",
       "listing_label": "DJI Dock - Release Notes",
       "date": "2024-08-15",
-      "days_ago": 659,
+      "days_ago": 664,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -730,7 +730,7 @@
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20N - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1114,
+      "days_ago": 1119,
       "firmware": [
         {
           "label": "Zenmuse H20N Firmware",
@@ -766,7 +766,7 @@
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20 Series - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1114,
+      "days_ago": 1119,
       "firmware": [
         {
           "label": "Zenmuse H20 Series Firmware",

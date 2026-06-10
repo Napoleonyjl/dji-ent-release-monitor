@@ -59,19 +59,6 @@
     button {
       font-family: inherit;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      border: 0;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .btn-primary:disabled {
-      opacity: 0.5;
-      cursor: wait;
-    }
     .btn-secondary {
       background: #fff;
       color: var(--accent);
@@ -286,7 +273,6 @@
     </div>
     <div class="header-actions">
       <button class="btn-secondary" id="language-btn">中英切换</button>
-      <button class="btn-primary" id="refresh-btn">Refresh now</button>
     </div>
   </header>
 
@@ -320,7 +306,6 @@
     const appTitle = document.getElementById('app-title');
     const byline = document.getElementById('byline');
     const headerMeta = document.getElementById('header-meta');
-    const refreshBtn = document.getElementById('refresh-btn');
     const languageBtn = document.getElementById('language-btn');
     const filterBar = document.getElementById('filter-bar');
     const productChipsEl = document.getElementById('product-chips');
@@ -332,7 +317,6 @@
         loadingInitial: 'Loading daily release data…',
         scraping: 'Loading daily release data…',
         rescraping: 'Updating in the background…',
-        refresh: 'Reload data',
         language: '中英切换：English',
         windowLabel: 'Window',
         productsLabel: 'Products',
@@ -362,7 +346,6 @@
         loadingInitial: '正在加载每日发布数据…',
         scraping: '正在加载每日发布数据…',
         rescraping: '正在后台更新…',
-        refresh: '重新加载数据',
         language: '中英切换：中文',
         windowLabel: '时间',
         productsLabel: '产品',
@@ -583,7 +566,6 @@
       document.title = t('title');
       appTitle.textContent = t('title');
       byline.textContent = t('byline');
-      refreshBtn.textContent = t('refresh');
       languageBtn.textContent = t('language');
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
@@ -630,7 +612,6 @@
 
     async function load(force) {
       applyStaticCopy();
-      refreshBtn.disabled = true;
       languageBtn.disabled = true;
       if (!lastData) {
         main.innerHTML = `
@@ -671,7 +652,6 @@
           main.innerHTML = `<div class="empty" style="color:var(--red)">${esc(t('failed')(e.message))}</div>`;
         }
       } finally {
-        refreshBtn.disabled = false;
         languageBtn.disabled = false;
       }
     }
@@ -684,7 +664,6 @@
       }, delayMs);
     }
 
-    refreshBtn.addEventListener('click', () => load(true));
     languageBtn.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       writeStoredLang(currentLang);
