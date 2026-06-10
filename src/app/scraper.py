@@ -250,8 +250,16 @@ def scrape_product(name: str, url: str, language: str = "en") -> ScrapedRelease:
     except Exception as e:
         raise ScrapeError(f"Failed to download PDF {pdf_url}: {e}") from e
 
-    tmp = Path(tempfile.gettempdir()) / f"dji_release_{abs(hash(final_pdf_url))}.pdf"
-    tmp.write_bytes(pdf_bytes)
+    # Different configured products can resolve to the same PDF (for example
+    # Zenmuse V1 and S1). Use a unique file so concurrent scrapes never read a
+    # partially overwritten shared path.
+    with tempfile.NamedTemporaryFile(
+        prefix="dji_release_",
+        suffix=".pdf",
+        delete=False,
+    ) as tmp_file:
+        tmp_file.write(pdf_bytes)
+        tmp = Path(tmp_file.name)
 
     return ScrapedRelease(
         product=name,

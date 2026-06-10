@@ -61,7 +61,8 @@ WHATS_NEW_HEADING_RE = re.compile(r"^what['’‘]?s\s+\w+", re.IGNORECASE)
 CN_WHATS_NEW_HEADING_RE = re.compile(r"^(本次更新|更新内容|更新了什么|新增功能|主要更新)")
 BULLET_PREFIX_RE = re.compile(r"^[•\-·*■◦⚫\uf06c\uf0b7]\s*")
 OCR_BULLET_PREFIX_RE = re.compile(
-    r"^(?:(?:[eEoO©®@])\s+|[。.,，:：]+\s*)(?=[A-Z\u3400-\u9fff])"
+    r"^(?:(?:[eEoO©®@])\s+[\"'“”‘’]?\s*|[。.,，:：]+\s*)"
+    r"(?=[A-Z\u3400-\u9fff])"
 )
 OCR_LOCK = threading.Lock()
 DOCK3_MATRICE4D_TITLE_RE = re.compile(r"3\s*/\s*Matrice\s+4D", re.IGNORECASE)

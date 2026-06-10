@@ -119,7 +119,7 @@ def main() -> int:
 
     ocr_whats_new = _parse_ocr_whats_new(
         "本次更新\n"
-        "e 修复部分已知问题。\n"
+        "e ”修复部分已知问题。\n"
         "。修复另一个已知问题。\n"
         "注意：\n"
         "© 确保固件升级至最新版本。"
