@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from app.pdf_parser import (  # noqa: E402
     _parse_date,
     _parse_firmware_table,
+    _parse_ocr_whats_new,
     _parse_whats_new,
     DATE_LINE_RE,
 )
@@ -115,6 +116,17 @@ def main() -> int:
     wn_cn = _parse_whats_new(SAMPLE_CN_WHATS_NEW.splitlines())
     check("Chinese heading '更新了什么' is parsed",
           wn_cn == ["新增对M350 RTK飞行器的支持。"], f"got {wn_cn}")
+
+    ocr_whats_new = _parse_ocr_whats_new(
+        "本次更新\n"
+        "e 修复部分已知问题。\n"
+        "。修复另一个已知问题。\n"
+        "注意：\n"
+        "© 确保固件升级至最新版本。"
+    )
+    check("OCR bullet artifacts are removed",
+          ocr_whats_new == ["修复部分已知问题。", "修复另一个已知问题。"],
+          f"got {ocr_whats_new}")
 
     print()
     if failures:

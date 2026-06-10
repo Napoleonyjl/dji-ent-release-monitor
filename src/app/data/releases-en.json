@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T02:47:25",
+  "generated_at": "2026-06-10T20:58:53",
   "today": "2026-06-10",
   "language": "en",
   "product_order": [
@@ -7,7 +7,7 @@
     "DJI Matrice 350 RTK",
     "DJI Matrice 4 Series",
     "DJI Mavic 3 Enterprise",
-    "DJI Dock 3",
+    "DJI Dock 3 / M4D Series",
     "DJI Dock 2",
     "DJI Dock",
     "DJI Zenmuse L3",
@@ -198,7 +198,7 @@
       "parse_warnings": []
     },
     {
-      "product": "DJI Dock 3",
+      "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/dock-3/downloads",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_3/RN_Known_Issue_List/20260508/DJI_Dock_3_Matrice_4D_Series_Release_Note_EN.pdf",
       "language": "en",

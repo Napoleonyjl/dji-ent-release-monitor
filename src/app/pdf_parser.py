@@ -26,6 +26,9 @@ raising — partial data is better than no data.
 from __future__ import annotations
 
 import re
+import shutil
+import subprocess
+from io import BytesIO
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
@@ -56,6 +59,9 @@ VERSION_VALUE_RE = re.compile(r"\bv\d[\w.\-]*", re.IGNORECASE)
 WHATS_NEW_HEADING_RE = re.compile(r"^what['’‘]?s\s+\w+", re.IGNORECASE)
 CN_WHATS_NEW_HEADING_RE = re.compile(r"^(本次更新|更新内容|更新了什么|新增功能|主要更新)")
 BULLET_PREFIX_RE = re.compile(r"^[•\-·*■◦⚫\uf06c\uf0b7]\s*")
+OCR_BULLET_PREFIX_RE = re.compile(
+    r"^(?:(?:[eEoO©®@])\s+|[。.,，:：]+\s*)(?=[A-Z\u3400-\u9fff])"
+)
 DOCK3_MATRICE4D_TITLE_RE = re.compile(r"3\s*/\s*Matrice\s+4D", re.IGNORECASE)
 DOCK3_MATRICE4D_LABELS_ZH = [
     "机场固件版本",
@@ -251,6 +257,50 @@ def _parse_whats_new(lines: list[str]) -> list[str]:
     return bullets
 
 
+def _extract_ocr_text(pdf_path: Path, max_pages: int = 2) -> str:
+    """OCR the newest release pages when the PDF text layer is incomplete."""
+    tesseract = shutil.which("tesseract")
+    if not tesseract:
+        raise RuntimeError("Tesseract OCR is not installed")
+
+    parts: list[str] = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages[:max_pages]:
+            image = page.to_image(resolution=300).original
+            image_bytes = BytesIO()
+            image.save(image_bytes, format="PNG")
+            completed = subprocess.run(
+                [
+                    tesseract,
+                    "stdin",
+                    "stdout",
+                    "-l",
+                    "chi_sim+eng",
+                    "--psm",
+                    "6",
+                ],
+                input=image_bytes.getvalue(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                check=False,
+            )
+            if completed.returncode != 0:
+                error = completed.stderr.decode("utf-8", errors="replace").strip()
+                raise RuntimeError(error or "Tesseract OCR failed")
+            parts.append(completed.stdout.decode("utf-8", errors="replace"))
+    return "\n".join(parts)
+
+
+def _parse_ocr_whats_new(text: str) -> list[str]:
+    cleaned_lines: list[str] = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if OCR_BULLET_PREFIX_RE.match(stripped):
+            stripped = "- " + OCR_BULLET_PREFIX_RE.sub("", stripped)
+        cleaned_lines.append(stripped)
+    return _parse_whats_new(cleaned_lines)
+
+
 def _is_dock3_matrice4d_text(text: str) -> bool:
     return bool(DOCK3_MATRICE4D_TITLE_RE.search(text))
 
@@ -327,6 +377,13 @@ def parse_release_pdf(pdf_path: Path) -> ParsedRelease:
     result.whats_new = _parse_whats_new(lines)
     if is_dock3_matrice4d and not result.whats_new:
         result.whats_new = _parse_dock3_matrice4d_whats_new(full_text)
+    if not result.whats_new:
+        try:
+            ocr_text = _extract_ocr_text(pdf_path)
+        except Exception as e:
+            result.warnings.append(f"OCR fallback failed: {e}")
+        else:
+            result.whats_new = _parse_ocr_whats_new(ocr_text)
     if not result.whats_new:
         result.warnings.append("Could not find a 'What's new' section")
 

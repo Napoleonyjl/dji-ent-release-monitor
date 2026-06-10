@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T02:47:31",
+  "generated_at": "2026-06-10T20:59:03",
   "today": "2026-06-10",
   "language": "zh",
   "product_order": [
@@ -7,7 +7,7 @@
     "DJI Matrice 350 RTK",
     "DJI Matrice 4 Series",
     "DJI Mavic 3 Enterprise",
-    "DJI Dock 3",
+    "DJI Dock 3 / M4D Series",
     "DJI Dock 2",
     "DJI Dock",
     "DJI Zenmuse L3",
@@ -173,7 +173,7 @@
       "parse_warnings": []
     },
     {
-      "product": "DJI Dock 3",
+      "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/cn/dock-3/downloads",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_3/RN_Known_Issue_List/20260508/DJI_Dock_3_Matrice_4D_Series_Release_Note_CN.pdf",
       "language": "zh",
@@ -455,10 +455,11 @@
       "date": "2026-02-06",
       "days_ago": 124,
       "firmware": [],
-      "whats_new": [],
+      "whats_new": [
+        "修复部分已知问题。"
+      ],
       "parse_warnings": [
-        "Could not parse the firmware version table",
-        "Could not find a 'What's new' section"
+        "Could not parse the firmware version table"
       ]
     },
     {
@@ -500,10 +501,10 @@
           "version": "V02.00.00.08"
         }
       ],
-      "whats_new": [],
-      "parse_warnings": [
-        "Could not find a 'What's new' section"
-      ]
+      "whats_new": [
+        "修复部分已知问题。"
+      ],
+      "parse_warnings": []
     },
     {
       "product": "DJI Zenmuse V1",
@@ -524,10 +525,10 @@
           "version": "V02.00.00.08"
         }
       ],
-      "whats_new": [],
-      "parse_warnings": [
-        "Could not find a 'What's new' section"
-      ]
+      "whats_new": [
+        "修复部分已知问题。"
+      ],
+      "parse_warnings": []
     },
     {
       "product": "DJI Zenmuse P1",

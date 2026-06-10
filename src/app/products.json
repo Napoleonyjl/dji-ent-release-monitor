@@ -3,7 +3,7 @@
   { "name": "DJI Matrice 350 RTK",      "url": "https://enterprise.dji.com/matrice-350-rtk/downloads" },
   { "name": "DJI Matrice 4 Series",     "url": "https://enterprise.dji.com/matrice-4-series/downloads" },
   { "name": "DJI Mavic 3 Enterprise",   "url": "https://enterprise.dji.com/mavic-3-enterprise/downloads" },
-  { "name": "DJI Dock 3",               "url": "https://enterprise.dji.com/dock-3/downloads" },
+  { "name": "DJI Dock 3 / M4D Series",  "scrape_name": "DJI Dock 3", "url": "https://enterprise.dji.com/dock-3/downloads" },
   { "name": "DJI Dock 2",               "url": "https://enterprise.dji.com/dock-2/downloads" },
   { "name": "DJI Dock",                 "url": "https://enterprise.dji.com/dock/downloads" },
   { "name": "DJI Zenmuse L3",           "url": "https://enterprise.dji.com/zenmuse-l3/downloads" },

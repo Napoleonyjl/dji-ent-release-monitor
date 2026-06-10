@@ -70,10 +70,16 @@ def _response_payload(data: dict, *, cached: bool, stale: bool, updating: bool) 
     return payload
 
 
-def _process_product(name: str, url: str, language: str) -> dict:
+def _process_product(
+    name: str,
+    url: str,
+    language: str,
+    scrape_name: str | None = None,
+) -> dict:
     """Scrape + parse a single product. Returns a result dict (never raises)."""
+    source_name = scrape_name or name
     try:
-        scraped = scrape_product(name, url, language=language)
+        scraped = scrape_product(source_name, url, language=language)
     except ScrapeError as e:
         return {"product": name, "url": url, "error": str(e)}
     except Exception as e:
@@ -113,7 +119,14 @@ async def _build_response(language: str) -> dict:
     products = _load_products()
     loop = asyncio.get_running_loop()
     tasks = [
-        loop.run_in_executor(None, _process_product, p["name"], p["url"], language)
+        loop.run_in_executor(
+            None,
+            _process_product,
+            p["name"],
+            p["url"],
+            language,
+            p.get("scrape_name"),
+        )
         for p in products
     ]
     results = await asyncio.gather(*tasks)

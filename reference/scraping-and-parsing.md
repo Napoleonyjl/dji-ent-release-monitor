@@ -75,6 +75,10 @@ Bug Fixes
   wrapped continuation lines into one bullet. **Stops** at `SECTION_BREAK_RE`
   (Bug Fixes / Notes / Improvements / Known Issues / Compatibility / next
   `Date:`).
+- Some DJI Chinese PDFs omit Unicode mappings for visible Chinese glyphs. If
+  the normal text layer yields no update section, `parse_release_pdf` renders
+  the newest pages and runs Tesseract OCR with Simplified Chinese and English
+  language data, then feeds the OCR result through the same section parser.
 - Each missing piece becomes a `warnings[]` entry; the function never raises.
 
 ## 3. How to debug a layout change
@@ -118,4 +122,6 @@ template.
 Edit `src/app/products.json` — an array of `{ "name", "url" }`. `url` must be the
 official product **/downloads** page that contains a Release Notes PDF row. The
 `name` tokens drive PDF-row scoring, so keep them close to how DJI labels the
-product (e.g. "DJI Matrice 350 RTK").
+product (e.g. "DJI Matrice 350 RTK"). When the UI display name intentionally
+differs from DJI's download-row label, add `scrape_name` and keep that value
+aligned with DJI's label.
