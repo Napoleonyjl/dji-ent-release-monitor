@@ -28,6 +28,7 @@ fi
 
 echo ">> Offline parser checks"
 "$VENV/bin/python" "$HERE/test_parser.py" || { echo "parser tests failed"; exit 1; }
+"$VENV/bin/python" "$HERE/test_fh2_parser.py" || { echo "FH2 parser tests failed"; exit 1; }
 
 echo ">> Booting server on :$PORT"
 ( cd "$SRC" && exec "$VENV/bin/python" -m uvicorn app.main:app --host 127.0.0.1 --port "$PORT" ) &

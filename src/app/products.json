@@ -1,4 +1,22 @@
 [
+  {
+    "name": { "en": "FH2 Public", "zh": "FH2 公有版" },
+    "source_type": "fh2_html",
+    "edition": "public",
+    "urls": {
+      "en": "https://fh.dji.com/user-manual/en/release-notes/release-notes-public.html",
+      "zh": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-public.html"
+    }
+  },
+  {
+    "name": { "en": "FH2 On-Premises", "zh": "FH2 私有版" },
+    "source_type": "fh2_html",
+    "edition": "private",
+    "urls": {
+      "en": "https://fh.dji.com/user-manual/en/release-notes/release-notes-private.html",
+      "zh": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-private.html"
+    }
+  },
   { "name": "DJI Matrice 400",          "url": "https://enterprise.dji.com/matrice-400/downloads" },
   { "name": "DJI Matrice 350 RTK",      "url": "https://enterprise.dji.com/matrice-350-rtk/downloads" },
   { "name": "DJI Matrice 4 Series",     "url": "https://enterprise.dji.com/matrice-4-series/downloads" },

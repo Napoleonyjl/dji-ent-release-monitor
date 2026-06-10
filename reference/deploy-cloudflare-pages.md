@@ -20,7 +20,7 @@ public/
 
 The frontend first loads `data/releases-en.json` or `data/releases-zh.json`.
 If those files are not present, it falls back to the local FastAPI
-`/api/releases` endpoint so the macOS app/dev server still works.
+`/api/releases` endpoint for development.
 
 ## GitHub Actions schedule
 
@@ -31,6 +31,10 @@ If those files are not present, it falls back to the local FastAPI
 
 It installs `src/requirements.txt`, runs `scripts/build_static_site.py`, then
 deploys `public/` to Cloudflare Pages.
+
+FH2 collection depends on Jina Reader being reachable from GitHub Actions.
+Failure of either FH2 source is written to that language snapshot's `errors[]`;
+the remaining product data is still published.
 
 If GitHub rejects workflow commits because your local token lacks the
 `workflow` scope, copy `reference/deploy-pages-workflow.yml` to

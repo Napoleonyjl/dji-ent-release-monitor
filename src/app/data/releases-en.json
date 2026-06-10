@@ -1,8 +1,10 @@
 {
-  "generated_at": "2026-06-10T20:58:53",
-  "today": "2026-06-10",
+  "generated_at": "2026-06-11T00:56:53",
+  "today": "2026-06-11",
   "language": "en",
   "product_order": [
+    "FH2 Public",
+    "FH2 On-Premises",
     "DJI Matrice 400",
     "DJI Matrice 350 RTK",
     "DJI Matrice 4 Series",
@@ -25,12 +27,13 @@
     {
       "product": "DJI Matrice 400",
       "url": "https://enterprise.dji.com/matrice-400/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-400/RN/20260528/Matrice_400_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-05-28",
       "listing_label": "DJI Matrice 400 - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 13,
+      "days_ago": 14,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -135,12 +138,13 @@
     {
       "product": "DJI Matrice 350 RTK",
       "url": "https://enterprise.dji.com/matrice-350-rtk/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-350-rtk/RN/20260528/Matrice_350_RTK_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-05-28",
       "listing_label": "Matrice 350 RTK - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 13,
+      "days_ago": 14,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -161,14 +165,92 @@
       "parse_warnings": []
     },
     {
+      "product": "FH2 Public",
+      "url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-public.html",
+      "source_type": "fh2_html",
+      "source_url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-public.html",
+      "language": "en",
+      "date": "2026-05-27",
+      "days_ago": 15,
+      "version": null,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "2026-05-27"
+        },
+        {
+          "type": "paragraph",
+          "text": "What's New"
+        },
+        {
+          "type": "paragraph",
+          "text": "OpenAPI V2.0 Public Cloud Edition Released"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Building on the capabilities opened in V1.0, this version adds query interfaces for various business modules, covering organizations and projects, member permissions, live stream forwarding and sharing, flight tasks and records, map annotations, and more — further meeting the integration needs of third-party platforms for information queries.",
+            "This version also optimizes the API system by separating the public cloud and private cloud API documentation, making API categorization clearer for developers to quickly understand and integrate, and allowing OpenAPI to enter a more agile iteration cadence."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Live Share 2.0 Supports Sharing Multiple Devices at Once"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Live sharing has been fully upgraded to support adding multiple device live streams to a single share link."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "FlightHub 2 Copilot Now Supports DJI Dock 2"
+        },
+        {
+          "type": "list",
+          "items": [
+            "FlightHub 2 Copilot, the intelligent drone control assistant, now supports DJI Dock 2."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Feature Optimization"
+        },
+        {
+          "type": "paragraph",
+          "text": "Automated Workflow Adds Trigger Configuration and Notification Module"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Automated workflow now supports trigger and notification configuration, allowing more flexible workflow triggering and outbound notifications of workflow status."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "More Updates"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The FlightHub project page menu can now be expanded to display menu names.",
+            "Notifications such as virtual cockpit AI alerts and automated assignment workflows now support sound alerts."
+          ]
+        }
+      ],
+      "parse_warnings": []
+    },
+    {
       "product": "DJI Zenmuse L3",
       "url": "https://enterprise.dji.com/zenmuse-l3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/zenmuse-l3/RN/20260527/Zenmuse_L3_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-05-27",
       "listing_label": "Zenmuse L3 - Release Notes",
       "date": "2026-05-27",
-      "days_ago": 14,
+      "days_ago": 15,
       "firmware": [
         {
           "label": "Zenmuse L3 Firmware",
@@ -200,12 +282,13 @@
     {
       "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/dock-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_3/RN_Known_Issue_List/20260508/DJI_Dock_3_Matrice_4D_Series_Release_Note_EN.pdf",
       "language": "en",
       "listing_date": "2026-05-08",
       "listing_label": "DJI Dock 3 - Release Notes",
       "date": "2026-05-08",
-      "days_ago": 33,
+      "days_ago": 34,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -262,12 +345,13 @@
     {
       "product": "DJI Matrice 4 Series",
       "url": "https://enterprise.dji.com/matrice-4-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Matrice_4_Series/20260507/DJI_Matrice_4_Series_Release_Notes_EN.pdf",
       "language": "en",
       "listing_date": "2026-05-07",
       "listing_label": "DJI Matrice 4 Series - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 34,
+      "days_ago": 35,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -306,12 +390,13 @@
     {
       "product": "DJI Mavic 3 Enterprise",
       "url": "https://enterprise.dji.com/mavic-3-enterprise/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Mavic_3_Enterprise/20260507/DJI_Mavic_3_Enterprise_Series_Release_Notes_EN.pdf",
       "language": "en",
       "listing_date": "2026-05-07",
       "listing_label": "DJI Mavic 3 Enterprise - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 34,
+      "days_ago": 35,
       "firmware": [
         {
           "label": "Aircraft Firmware",
@@ -336,14 +421,258 @@
       "parse_warnings": []
     },
     {
+      "product": "FH2 On-Premises",
+      "url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-private.html",
+      "source_type": "fh2_html",
+      "source_url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-private.html",
+      "language": "en",
+      "date": "2026-04-29",
+      "days_ago": 43,
+      "version": "V1.5",
+      "content_blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "2026-04-29 v1.5"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "I. Functionality Alignment (Aligned to 2026-04-15)"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "1、High-Definition Panorama"
+        },
+        {
+          "type": "list",
+          "items": [
+            "DJI Dock 3 and Matrice 4 Enterprise now support 500MP high-definition panoramas for efficient one-click environment data collection.",
+            "3× zoom can be set in the virtual cockpit and waypoint route settings to capture sphere panoramas. Automatic stitching is performed after capture. High-definition results can be viewed in the media file library, and support importing into the analyzer to use timeline and related features."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "2、Resource Library Upgrade"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The original media file library, model library, and design files have been merged into the \"Resource Library\" for unified, more convenient management.",
+            "A recycle bin has been added. Deleted files are moved to the recycle bin first. Periodic auto-emptying can be configured to free up storage space."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "3、Multimodal Recognition for Flight Routes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The task plan library now supports enabling multimodal recognition, allowing specified objects to be identified during flight route execution. Users are notified through designated methods when recognition is triggered."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "4、Surface Area Measurement in Analyzer"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Users can quickly measure the surface area of models, facilitating coverage area calculation and cost estimation, significantly improving efficiency in engineering operations.",
+            "Applicable to scenarios such as earthwork covering, lawn greening, and irregularly curved architectural surfaces."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "5、FlightHub Sync"
+        },
+        {
+          "type": "list",
+          "items": [
+            "FlightHub 2 FlightHub Sync Beta has completed testing and validation. It will be gradually phased out and replaced by the new FlightHub Sync.",
+            "File Sync – Now supports cross-configuration of file type, project, and bucket. Multiple buckets can be configured simultaneously.",
+            "Telemetry Data Sync – A new telemetry data sync feature enables real-time syncing of drone attitude data to third-party platforms.",
+            "Livestream Forwarding – Now supports the RTSP protocol.",
+            "Added support for Event API, allowing configuration of different event rules to push specific FlightHub events to external systems.",
+            "File sync now supports automatically deleting source files within FlightHub after sync is complete.",
+            "Third-Party Airspace Data Management – Supports configuring airspace information from third-party providers and displaying it within FlightHub."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "6、FlightHub Mapping API"
+        },
+        {
+          "type": "list",
+          "items": [
+            "OpenAPI now includes the FlightHub Mapping API, enabling third-party systems to quickly integrate cloud-based mapping capabilities."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "7、Gaussian Splatting"
+        },
+        {
+          "type": "list",
+          "items": [
+            "On-device reconstruction now supports Gaussian Splatting format, delivering more realistic and detailed results in scenes with fine structures and glass curtain walls."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "8、Model Sharing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The model sharing page supports viewing via mobile phone or tablet scan without requiring login."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "9、Sync Annotations to Analyzer"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The analyzer map settings now support syncing project annotations, with the option to select annotations and convert them to measurements with one click."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "10、AirSense ICAO Filtering"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The \"Map Operation Area\" on the team page has been upgraded to \"Airspace Safety\", with new AirSense alert management capabilities, including support for filtering by ICAO number."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "11、AI Change Detection"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Media Change Detection: The media file library now supports intelligent detection and marking of change areas between two media folders generated by the same waypoint route task.",
+            "Model Change Detection: The model library now supports intelligent detection and marking of change areas between two 2D models with overlapping areas."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "12、GCP-Based Reconstruction"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Cloud reconstruction now supports setting ground control points (GCPs). Standard targets support automatic point marking and automatic reconstruction."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "13、Real-Time Megaphone Support"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Supports initiating voice announcements and TTS announcements directly from the cloud."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "II. On-Premises Version Feature Optimizations"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "1、Visual Deployment"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Supports completing the deployment of FlightHub, Terra, and 4G services in private environments through a visual interface, replacing traditional command-line and manual configuration methods.",
+            "Helps customers shorten deployment cycles, lower implementation barriers, and improve deployment success rates. Applicable for initial deployment, first-time implementation, or operations where reduced deployment complexity is desired."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "2、Incremental Upgrade"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Starting from this version, incremental upgrades are supported. Compared to the previous full upgrade approach, only the necessary services that have changed need to be upgraded between adjacent versions, significantly reducing upgrade time and downtime.",
+            "Note: This capability will take effect after the next version is released. Customers must first upgrade to this version, and can then use incremental upgrades when upgrading from this version to the next adjacent version."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "3、Permanent Data Deletion"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Starting from this version, files deleted from the media file library, model library, and design files will be permanently deleted, and the corresponding storage space will be released simultaneously."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "4、AIO Admin Console – New Visual Configuration Options"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Operations that previously required code, scripts, or manual configuration file editing can now be performed through the AIO Admin Console, reducing O&M learning costs and implementation overhead.",
+            "Starting from this version, the AIO Admin Console will be deployed together with FlightHub in on-premises environments by default."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "5、AIO Admin Console – Experience Optimizations"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Added display of the FlightHub version number.",
+            "Map management now supports configuring layer information.",
+            "Supports one-click HTTPS certificate retrieval.",
+            "Remote O&M interaction optimized.",
+            "Log export now supports selecting a time range."
+          ]
+        }
+      ],
+      "parse_warnings": []
+    },
+    {
       "product": "DJI Zenmuse H30 Series",
       "url": "https://enterprise.dji.com/zenmuse-h30-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/zenmuse_h30_series/RN/20260331/Zenmuse_H30_Series_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-03-31",
       "listing_label": "Zenmuse H30 Series - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "Zenmuse H30 Series Firmware",
@@ -390,12 +719,13 @@
     {
       "product": "DJI Manifold 3",
       "url": "https://enterprise.dji.com/manifold-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Manifold_3/RN/20260331/Manifold_3_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-03-31",
       "listing_label": "Manifold 3 - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "Manifold 3 Firmware",
@@ -451,12 +781,13 @@
     {
       "product": "DJI D-RTK 3",
       "url": "https://enterprise.dji.com/d-rtk-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/d-rtk-3/RN/20260331/D-RTK 3_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2026-03-31",
       "listing_label": "D-RTK 3 Multifunctional Station - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "D-RTK 3 Firmware",
@@ -502,12 +833,13 @@
     {
       "product": "DJI Dock 2",
       "url": "https://enterprise.dji.com/dock-2/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_2/Release_Note/20260206/DJI_Dock_2_Release_Note_en1.pdf",
       "language": "en",
       "listing_date": "2026-02-06",
       "listing_label": "DJI Dock 2 - Release Notes",
       "date": "2026-02-06",
-      "days_ago": 124,
+      "days_ago": 125,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -542,12 +874,13 @@
     {
       "product": "DJI Zenmuse L2",
       "url": "https://enterprise.dji.com/zenmuse-l2/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_L2/RN/20251104/Zenmuse_L2_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2025-11-04",
       "listing_label": "Zenmuse L2 - Release Notes",
       "date": "2025-11-04",
-      "days_ago": 218,
+      "days_ago": 219,
       "firmware": [
         {
           "label": "Zenmuse L2 Firmware",
@@ -594,12 +927,13 @@
     {
       "product": "DJI Zenmuse S1",
       "url": "https://enterprise.dji.com/zenmuse-s1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse S1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 322,
+      "days_ago": 323,
       "firmware": [
         {
           "label": "Zenmuse V1 Firmware",
@@ -622,12 +956,13 @@
     {
       "product": "DJI Zenmuse V1",
       "url": "https://enterprise.dji.com/zenmuse-v1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_en.pdf",
       "language": "en",
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse V1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 322,
+      "days_ago": 323,
       "firmware": [
         {
           "label": "Zenmuse V1 Firmware",
@@ -650,12 +985,13 @@
     {
       "product": "DJI Zenmuse P1",
       "url": "https://enterprise.dji.com/zenmuse-p1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_P1/20250610/DJI_P1_Release_Notes_en_20250610.pdf",
       "language": "en",
       "listing_date": "2025-06-10",
       "listing_label": "Zenmuse P1 - Release Notes",
       "date": "2025-06-10",
-      "days_ago": 365,
+      "days_ago": 366,
       "firmware": [
         {
           "label": "DJI P1 Firmware",
@@ -675,12 +1011,13 @@
     {
       "product": "DJI Dock",
       "url": "https://enterprise.dji.com/dock/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/m30_series_dock_bundle/Release Note/20240815/DJI_Dock_Release_Notes_en_20240815_1.pdf",
       "language": "en",
       "listing_date": "2024-08-15",
       "listing_label": "DJI Dock - Release Notes",
       "date": "2024-08-15",
-      "days_ago": 664,
+      "days_ago": 665,
       "firmware": [
         {
           "label": "Dock Firmware",
@@ -725,12 +1062,13 @@
     {
       "product": "DJI Zenmuse H20N",
       "url": "https://enterprise.dji.com/zenmuse-h20n/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20N/RN/20230518/Zenmuse_H20N_Release_Notes_en_20230518.pdf",
       "language": "en",
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20N - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1119,
+      "days_ago": 1120,
       "firmware": [
         {
           "label": "Zenmuse H20N Firmware",
@@ -761,12 +1099,13 @@
     {
       "product": "DJI Zenmuse H20 Series",
       "url": "https://enterprise.dji.com/zenmuse-h20-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20_Series/20230518/Zenmuse_H20_Series_Release_Notes_EN.pdf",
       "language": "en",
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20 Series - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1119,
+      "days_ago": 1120,
       "firmware": [
         {
           "label": "Zenmuse H20 Series Firmware",

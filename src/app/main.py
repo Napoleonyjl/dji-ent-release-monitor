@@ -12,6 +12,7 @@ from typing import Optional
 from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse, JSONResponse
 
+from .fh2_parser import FH2Error, scrape_fh2_release
 from .pdf_parser import parse_release_pdf
 from .scraper import ScrapeError, scrape_product
 
@@ -34,6 +35,21 @@ app = FastAPI(title="DJI ENT Release Note Monitor")
 
 def _load_products() -> list[dict]:
     return json.loads(PRODUCTS_FILE.read_text(encoding="utf-8"))
+
+
+def _localized_value(value, language: str):
+    if isinstance(value, dict):
+        return value.get(language) or value.get("en") or next(iter(value.values()))
+    return value
+
+
+def _product_name(product: dict, language: str) -> str:
+    return str(_localized_value(product["name"], language))
+
+
+def _product_url(product: dict, language: str) -> str:
+    value = product.get("urls", product.get("url"))
+    return str(_localized_value(value, language))
 
 
 def _snapshot_path(language: str) -> Path:
@@ -75,8 +91,41 @@ def _process_product(
     url: str,
     language: str,
     scrape_name: str | None = None,
+    source_type: str = "pdf",
+    edition: str | None = None,
 ) -> dict:
     """Scrape + parse a single product. Returns a result dict (never raises)."""
+    if source_type == "fh2_html":
+        try:
+            parsed = scrape_fh2_release(url, edition or "")
+        except FH2Error as e:
+            return {"product": name, "url": url, "error": str(e)}
+        except Exception as e:
+            return {"product": name, "url": url, "error": f"Unexpected FH2 error: {e}"}
+
+        today = date.today()
+        release_date = parsed.release_date
+        days_ago = (today - release_date).days if release_date else None
+        return {
+            "product": name,
+            "url": url,
+            "source_type": "fh2_html",
+            "source_url": url,
+            "language": language,
+            "date": release_date.isoformat() if release_date else None,
+            "days_ago": days_ago,
+            "version": parsed.version,
+            "content_blocks": parsed.content_blocks,
+            "parse_warnings": parsed.warnings,
+        }
+
+    if source_type != "pdf":
+        return {
+            "product": name,
+            "url": url,
+            "error": f"Unsupported source type: {source_type}",
+        }
+
     source_name = scrape_name or name
     try:
         scraped = scrape_product(source_name, url, language=language)
@@ -102,6 +151,7 @@ def _process_product(
     return {
         "product": name,
         "url": scraped.page_url,
+        "source_type": "pdf",
         "source_pdf": scraped.pdf_url,
         "language": language,
         "listing_date": scraped.listing_date,
@@ -122,10 +172,12 @@ async def _build_response(language: str) -> dict:
         loop.run_in_executor(
             None,
             _process_product,
-            p["name"],
-            p["url"],
+            _product_name(p, language),
+            _product_url(p, language),
             language,
             p.get("scrape_name"),
+            p.get("source_type", "pdf"),
+            p.get("edition"),
         )
         for p in products
     ]
@@ -146,7 +198,7 @@ async def _build_response(language: str) -> dict:
 
     # Preserve the configured product order for the product filter UI so the
     # checkboxes don't reshuffle every refresh.
-    product_order = [p["name"] for p in products]
+    product_order = [_product_name(p, language) for p in products]
 
     return {
         "generated_at": datetime.now().isoformat(timespec="seconds"),

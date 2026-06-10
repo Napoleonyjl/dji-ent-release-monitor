@@ -1,8 +1,8 @@
 # AGENTS.md
 
 This folder is a **skill bundle** for the *DJI ENT Release Monitor* — a FastAPI
-WebUI that scrapes DJI enterprise download pages, parses Release Notes PDFs, and
-ships as a self-contained macOS `.app`.
+WebUI and Cloudflare Pages site that parses DJI PDF and FlightHub 2 HTML release
+notes.
 
 **Start here:** read [`SKILL.md`](./SKILL.md) for the full orientation, then the
 docs in [`reference/`](./reference/).
@@ -12,20 +12,24 @@ docs in [`reference/`](./reference/).
 - Single-file WebUI: `src/app/static/index.html`.
 - Fragile, DJI-dependent logic: `src/app/scraper.py` + `src/app/pdf_parser.py`
   (read [`reference/scraping-and-parsing.md`](./reference/scraping-and-parsing.md) first).
-- macOS packaging: [`packaging/`](./packaging/) (build with `packaging/build_macos_app.sh`).
+- Static publishing: `scripts/build_static_site.py` and
+  [`reference/deploy-cloudflare-pages.md`](./reference/deploy-cloudflare-pages.md).
 
 ## Common commands
 ```bash
 scripts/dev_run.sh        # run locally with hot-reload -> http://127.0.0.1:8000
 scripts/test_parser.py    # offline PDF-parser checks (run inside .devvenv)
 scripts/smoke_test.sh     # parser checks + boot server + hit / and /api/releases
-packaging/build_macos_app.sh   # -> dist/DJI ENT Release Monitor.{app,zip}
+scripts/build_static_site.py   # -> public/ for Cloudflare Pages
 ```
 
 ## Rules of thumb
 - Per-product failures must stay non-fatal (use `errors[]` / `parse_warnings[]`).
 - `scraper.py` uses only the Python standard library — keep it that way.
-- After changing `src/`, bump `packaging/VERSION` before rebuilding the app
-  (the runtime only re-syncs its copy when the version string changes).
 - If you change the `/api/releases` JSON shape, update `static/index.html` to match.
 - Verify changes with `scripts/smoke_test.sh` (and `scripts/test_parser.py` for parser edits).
+- This project is web-only. Do not modify the legacy `packaging/` directory
+  unless macOS support is explicitly requested again.
+- A change is not complete after local verification. Commit and push it to
+  GitHub, deploy Cloudflare Pages, then verify the production site at
+  `https://dji-ent-release-monitor.pages.dev`.

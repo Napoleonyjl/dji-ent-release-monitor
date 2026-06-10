@@ -204,7 +204,7 @@
     .meta-row a { color: var(--accent); text-decoration: none; }
     .meta-row a:hover { text-decoration: underline; }
 
-    .pdf-link {
+    .source-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -218,7 +218,7 @@
       font-weight: 600;
       margin: 4px 0 12px;
     }
-    .pdf-link:hover {
+    .source-link:hover {
       background: var(--accent);
       color: #fff;
       border-color: var(--accent);
@@ -250,6 +250,29 @@
       margin-bottom: 6px;
     }
 
+    .fh2-content {
+      margin-top: 8px;
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+    .fh2-content h3,
+    .fh2-content h4 {
+      margin: 18px 0 7px;
+      line-height: 1.35;
+    }
+    .fh2-content h3 { font-size: 15px; }
+    .fh2-content h4 { font-size: 14px; }
+    .fh2-content p {
+      margin: 7px 0;
+      font-size: 14px;
+    }
+    .fh2-content ul {
+      margin: 7px 0;
+      padding-left: 22px;
+    }
+    .fh2-content li {
+      margin-bottom: 5px;
+    }
     .warning {
       background: #fef3c7;
       border: 1px solid #fde68a;
@@ -333,6 +356,7 @@
         released: 'Released',
         productPage: 'Product page ↗',
         openPdf: '📄 Open Release Notes PDF',
+        openReleasePage: 'Open Release Page ↗',
         whatsNew: "What's new",
         sectionTitle: (days, shown, total) => `Updates in the last ${days} days · ${shown} of ${total} products selected`,
         noUpdates: days => `No selected products have released firmware in the last ${days} days.`,
@@ -362,6 +386,7 @@
         released: '发布日期',
         productPage: '产品页面 ↗',
         openPdf: '📄 打开发布记录 PDF',
+        openReleasePage: '打开发布页面 ↗',
         whatsNew: '本次更新',
         sectionTitle: (days, shown, total) => `最近 ${days} 天的更新 · 已选产品中 ${shown}/${total} 个有记录`,
         noUpdates: days => `最近 ${days} 天内，所选产品没有发布固件更新。`,
@@ -439,7 +464,24 @@
       return `<span class="badge gray">${esc(t('daysAgo')(daysAgo))}</span>`;
     }
 
-    function renderCard(r) {
+    function renderFh2Blocks(blocks) {
+      const parts = [];
+      for (const block of blocks || []) {
+        if (!block || typeof block !== 'object') continue;
+        if (block.type === 'heading') {
+          const tag = Number(block.level) >= 4 ? 'h4' : 'h3';
+          parts.push(`<${tag}>${esc(block.text)}</${tag}>`);
+        } else if (block.type === 'paragraph') {
+          parts.push(`<p>${esc(block.text)}</p>`);
+        } else if (block.type === 'list' && Array.isArray(block.items)) {
+          const items = block.items.map(item => `<li>${esc(item)}</li>`).join('');
+          if (items) parts.push(`<ul>${items}</ul>`);
+        }
+      }
+      return parts.join('');
+    }
+
+    function renderPdfCard(r) {
       const firmwareRows = (r.firmware || []).map(f =>
         `<tr><td class="label">${esc(f.label)}</td><td class="value">${esc(f.version)}</td></tr>`
       ).join('');
@@ -456,13 +498,39 @@
             ${esc(t('released'))} <strong>${esc(r.date || t('unknownDate'))}</strong>
             · <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(t('productPage'))}</a>
           </div>
-          <a class="pdf-link" href="${esc(r.source_pdf)}" target="_blank" rel="noopener">
+          <a class="source-link" href="${esc(r.source_pdf)}" target="_blank" rel="noopener">
             ${esc(t('openPdf'))}
           </a>
           ${firmwareRows ? `<table class="firmware-table"><tbody>${firmwareRows}</tbody></table>` : ''}
           ${whatsNew ? `<h3 style="margin:14px 0 6px;font-size:14px;">${esc(t('whatsNew'))}</h3><ul class="whats-new">${whatsNew}</ul>` : ''}
         </div>
       `;
+    }
+
+    function renderFh2Card(r) {
+      const content = renderFh2Blocks(r.content_blocks);
+      return `
+        <div class="card">
+          <div class="card-head">
+            <h2>${esc(r.product)}</h2>
+            <div class="badges">
+              ${r.version ? `<span class="badge">${esc(r.version)}</span>` : ''}
+              ${freshnessBadge(r.days_ago)}
+            </div>
+          </div>
+          <div class="meta-row">
+            ${esc(t('released'))} <strong>${esc(r.date || t('unknownDate'))}</strong>
+          </div>
+          <a class="source-link" href="${esc(r.source_url || r.url)}" target="_blank" rel="noopener">
+            ${esc(t('openReleasePage'))}
+          </a>
+          ${content ? `<div class="fh2-content">${content}</div>` : ''}
+        </div>
+      `;
+    }
+
+    function renderCard(r) {
+      return r.source_type === 'fh2_html' ? renderFh2Card(r) : renderPdfCard(r);
     }
 
     function renderError(r) {
@@ -668,6 +736,7 @@
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       writeStoredLang(currentLang);
       lastData = null;
+      filters.products.clear();
       if (refreshTimer) clearTimeout(refreshTimer);
       load(false);
     });

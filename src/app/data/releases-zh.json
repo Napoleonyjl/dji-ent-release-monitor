@@ -1,8 +1,10 @@
 {
-  "generated_at": "2026-06-10T20:59:03",
-  "today": "2026-06-10",
+  "generated_at": "2026-06-11T00:57:04",
+  "today": "2026-06-11",
   "language": "zh",
   "product_order": [
+    "FH2 公有版",
+    "FH2 私有版",
     "DJI Matrice 400",
     "DJI Matrice 350 RTK",
     "DJI Matrice 4 Series",
@@ -25,12 +27,13 @@
     {
       "product": "DJI Matrice 400",
       "url": "https://enterprise.dji.com/cn/matrice-400/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-400/RN/20260528/Matrice_400_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-05-28",
       "listing_label": "DJI Matrice 400 - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 13,
+      "days_ago": 14,
       "firmware": [
         {
           "label": "飞行器固件",
@@ -54,12 +57,13 @@
     {
       "product": "DJI Matrice 350 RTK",
       "url": "https://enterprise.dji.com/cn/matrice-350-rtk/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/matrice-350-rtk/RN/20260528/Matrice_350_RTK_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-05-28",
       "listing_label": "Matrice 350 RTK - Release Notes",
       "date": "2026-05-28",
-      "days_ago": 13,
+      "days_ago": 14,
       "firmware": [
         {
           "label": "飞行器固件",
@@ -136,14 +140,92 @@
       "parse_warnings": []
     },
     {
+      "product": "FH2 公有版",
+      "url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-public.html",
+      "source_type": "fh2_html",
+      "source_url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-public.html",
+      "language": "zh",
+      "date": "2026-05-27",
+      "days_ago": 15,
+      "version": null,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "2026-05-27 版本公告"
+        },
+        {
+          "type": "paragraph",
+          "text": "【新功能支持】"
+        },
+        {
+          "type": "paragraph",
+          "text": "OpenAPI V2.0 公有云版发布"
+        },
+        {
+          "type": "list",
+          "items": [
+            "本版本在 V1.0 已开放能力基础上，新增各业务模块的查询类接口，覆盖组织项目、成员权限、直播转发与分享、飞行任务与记录、地图标注等能力，进一步满足第三方平台信息查询的集成需求。",
+            "同时，本版本优化了接口体系，分离公有云与私有云接口文档，使接口分类更加清晰，便于开发者快速理解与集成，也便于 OpenAPI 进入更敏捷迭代节奏。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "直播分享 2.0 支持一次性分享多个设备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "直播分享功能全面升级，支持在一个分享链接中添加多个设备直播码流。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "司空2 Copilot 支持大疆机场 2"
+        },
+        {
+          "type": "list",
+          "items": [
+            "司空2 Copilot 智能无人机操控助手新增支持大疆机场 2。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "【功能优化】"
+        },
+        {
+          "type": "paragraph",
+          "text": "自动化工作流新增配置触发器及通知模块"
+        },
+        {
+          "type": "list",
+          "items": [
+            "自动化工作流支持配置触发器和通知，可更灵活地触发工作流并向外通知工作流状态。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "【更多功能支持】"
+        },
+        {
+          "type": "list",
+          "items": [
+            "司空项目页菜单可展开显示菜单名称",
+            "驾驶舱智能识别告警、自动派遣工作流等通知支持声音提示"
+          ]
+        }
+      ],
+      "parse_warnings": []
+    },
+    {
       "product": "DJI Zenmuse L3",
       "url": "https://enterprise.dji.com/cn/zenmuse-l3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/zenmuse-l3/RN/20260527/Zenmuse_L3_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-05-27",
       "listing_label": "Zenmuse L3 - Release Notes",
       "date": "2026-05-27",
-      "days_ago": 14,
+      "days_ago": 15,
       "firmware": [
         {
           "label": "禅思L3固件版本",
@@ -175,12 +257,13 @@
     {
       "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/cn/dock-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_3/RN_Known_Issue_List/20260508/DJI_Dock_3_Matrice_4D_Series_Release_Note_CN.pdf",
       "language": "zh",
       "listing_date": "2026-05-08",
       "listing_label": "DJI Dock 3 - Release Notes",
       "date": "2026-05-08",
-      "days_ago": 33,
+      "days_ago": 34,
       "firmware": [
         {
           "label": "机场固件版本",
@@ -238,12 +321,13 @@
     {
       "product": "DJI Matrice 4 Series",
       "url": "https://enterprise.dji.com/cn/matrice-4-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Matrice_4_Series/20260507/DJI_Matrice_4_Series_Release_Notes_CN.pdf",
       "language": "zh",
       "listing_date": "2026-05-07",
       "listing_label": "DJI Matrice 4 Series - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 34,
+      "days_ago": 35,
       "firmware": [
         {
           "label": "飞行器固件版本",
@@ -283,12 +367,13 @@
     {
       "product": "DJI Mavic 3 Enterprise",
       "url": "https://enterprise.dji.com/cn/mavic-3-enterprise/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Mavic_3_Enterprise/20260507/DJI_Mavic_3_Enterprise_Series_Release_Notes_CN.pdf",
       "language": "zh",
       "listing_date": "2026-05-07",
       "listing_label": "DJI Mavic 3 Enterprise - Release Notes",
       "date": "2026-05-07",
-      "days_ago": 34,
+      "days_ago": 35,
       "firmware": [
         {
           "label": "飞行器固件版本",
@@ -314,14 +399,262 @@
       "parse_warnings": []
     },
     {
+      "product": "FH2 私有版",
+      "url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-private.html",
+      "source_type": "fh2_html",
+      "source_url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-private.html",
+      "language": "zh",
+      "date": "2026-04-29",
+      "days_ago": 43,
+      "version": "V1.5",
+      "content_blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "2026-04-29 私有版 V1.5"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "一、公有版能力对齐(对齐至2026-04-15)"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "1、超清全景"
+        },
+        {
+          "type": "list",
+          "items": [
+            "大疆机场 3、Matrice 4 行业版新增支持 5 亿像素超清全景，实现环境信息一键高效采集",
+            "驾驶舱及航点航线中支持设置 3X 变焦拍摄球形全景，拍摄后自动拼接；超清成果可在媒体库中查看，并支持导入分析器使用时间轴等相关功能"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "2、资源库全新升级"
+        },
+        {
+          "type": "list",
+          "items": [
+            "原媒体库、模型库及设计文件现已合并为\"资源库\"，统一管理更便捷",
+            "新增回收站功能，删除文件后将先进入回收站，支持设置周期性自动清空，灵活释放存储空间"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "3、航线支持多模态识别"
+        },
+        {
+          "type": "list",
+          "items": [
+            "计划库内支持开启多模态识别，可在航线执行过程中识别指定目标物，触发识别后将通过指定方式通知用户"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "4、分析器新增表面积测量功能"
+        },
+        {
+          "type": "list",
+          "items": [
+            "支持快速测量模型表面积，便捷完成覆膜面积计算及成本估算，显著提升工程领域作业效率",
+            "适用于渣土覆膜、草坪绿化、异形曲面建筑等场景"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "5、司空 Sync"
+        },
+        {
+          "type": "list",
+          "items": [
+            "司空 2 云端互联功能（Beta）已完成测试验证，将逐步下线并升级为全新的司空 Sync",
+            "文件同步：新增支持将文件类型-项目-存储桶的交叉配置，支持同时配置多个存储桶",
+            "遥测数据同步：新增遥测数据同步功能，可将无人机姿态数据实时同步至三方平台",
+            "直播转发：新增支持 RTSP 协议",
+            "新增支持 Event API，可配置不同事件规则，向外部系统推送司空内的特定事件信息",
+            "文件同步支持在同步完成后自动删除司空内的源文件",
+            "三方空域数据管理：支持配置来自三方空域数据提供商的空域信息，并在司空内统一显示"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "6、司空建模 API"
+        },
+        {
+          "type": "list",
+          "items": [
+            "OpenAPI 新增司空建模 API，支持三方系统快速集成云端建模能力"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "7、高斯泼溅"
+        },
+        {
+          "type": "list",
+          "items": [
+            "端侧重建新增支持高斯泼溅格式，细小结构、玻璃幕墙等场景效果更加真实清晰"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "8、模型分享"
+        },
+        {
+          "type": "list",
+          "items": [
+            "模型分享页面支持无需登录，通过手机、平板扫码直接查看"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "9、标注同步至分析器"
+        },
+        {
+          "type": "list",
+          "items": [
+            "分析器地图设置支持同步展示项目标注，并支持选择标注一键转化为量测"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "10、AirSense 支持 ICAO 过滤"
+        },
+        {
+          "type": "list",
+          "items": [
+            "团队页「地图作业区域」升级为「空域安全」，新增 AirSense 告警管理能力，支持按 ICAO 号进行过滤"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "11、AI 变化检测"
+        },
+        {
+          "type": "list",
+          "items": [
+            "媒体变化检测：媒体库支持对同一航点航线任务产生的两组媒体文件夹进行智能检测，并标记变化区域",
+            "模型变化检测：模型库支持对两个具有重叠区域的二维模型进行智能检测，并标记变化区域"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "12、像控点建模"
+        },
+        {
+          "type": "list",
+          "items": [
+            "云端重建支持设置像控点，标准靶标支持自动刺点并自动触发重建"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "13、支持实时喊话设备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "支持在云端直接发起语音喊话及 TTS 喊话"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "14、不支持Copilot相关能力"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "二、私有版功能优化"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "1、新增可视化部署能力"
+        },
+        {
+          "type": "list",
+          "items": [
+            "支持通过可视化方式完成私有化环境下司空平台、Terra 及 4G 服务的部署，替代传统命令行与手工配置方式",
+            "帮助客户缩短部署周期、降低实施门槛并提升部署成功率，适用于首次部署私有化环境、初次实施或希望降低部署复杂度的运维场景"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "2、新增增量升级能力"
+        },
+        {
+          "type": "list",
+          "items": [
+            "从该版本起支持增量升级能力。相较于历史全量升级方式，相邻版本升级时仅需升级发生变化的必要服务，可显著缩短升级耗时并减少停机时间",
+            "注意：该能力将在下一个版本发布后正式应用，即客户需先升级至本版本，后续再从本版本升级至相邻更高版本时，方可使用增量升级能力"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "3、支持数据真删除"
+        },
+        {
+          "type": "list",
+          "items": [
+            "从该版本起，司空媒体库、模型库及设计文件在执行删除操作后，将进行彻底删除，并同步释放对应存储空间"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "4、AIO 管理后台新增大量可视化配置项"
+        },
+        {
+          "type": "list",
+          "items": [
+            "针对以往依赖代码、脚本或手动修改配置文件的操作，现支持通过 AIO 管理后台统一进行可视化配置，降低运维学习成本与实施成本，提升日常配置管理效率",
+            "从该版本起，AIO 管理后台将默认随司空一并部署至私有化环境"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "5、AIO 管理后台系列体验优化"
+        },
+        {
+          "type": "list",
+          "items": [
+            "新增司空版本号信息展示",
+            "地图管理功能支持配置层级信息",
+            "支持一键获取 HTTPS 证书",
+            "远程运维交互优化",
+            "日志导出支持选择时间范围"
+          ]
+        }
+      ],
+      "parse_warnings": []
+    },
+    {
       "product": "DJI Zenmuse H30 Series",
       "url": "https://enterprise.dji.com/cn/zenmuse-h30-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/zenmuse_h30_series/RN/20260331/Zenmuse_H30_Series_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-03-31",
       "listing_label": "Zenmuse H30 Series - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "禅思H30系列固件",
@@ -336,12 +669,13 @@
     {
       "product": "DJI Manifold 3",
       "url": "https://enterprise.dji.com/cn/manifold-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Manifold_3/RN/20260331/Manifold_3_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-03-31",
       "listing_label": "Manifold 3 - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "妙算3固件",
@@ -397,12 +731,13 @@
     {
       "product": "DJI D-RTK 3",
       "url": "https://enterprise.dji.com/cn/d-rtk-3/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/d-rtk-3/RN/20260331/D-RTK 3_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2026-03-31",
       "listing_label": "D-RTK 3 Multifunctional Station - Release Notes",
       "date": "2026-03-31",
-      "days_ago": 71,
+      "days_ago": 72,
       "firmware": [
         {
           "label": "D-RTK 3固件",
@@ -448,12 +783,13 @@
     {
       "product": "DJI Dock 2",
       "url": "https://enterprise.dji.com/cn/dock-2/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_2/Release_Note/20260206/DJI_Dock_2_Release_Note_cn1.pdf",
       "language": "zh",
       "listing_date": "2026-02-06",
       "listing_label": "DJI Dock 2 - Release Notes",
       "date": "2026-02-06",
-      "days_ago": 124,
+      "days_ago": 125,
       "firmware": [],
       "whats_new": [
         "修复部分已知问题。"
@@ -465,12 +801,13 @@
     {
       "product": "DJI Zenmuse L2",
       "url": "https://enterprise.dji.com/cn/zenmuse-l2/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_L2/RN/20251104/Zenmuse_L2_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2025-11-04",
       "listing_label": "Zenmuse L2 - Release Notes",
       "date": "2025-11-04",
-      "days_ago": 218,
+      "days_ago": 219,
       "firmware": [
         {
           "label": "禅思L2固件版本",
@@ -485,12 +822,13 @@
     {
       "product": "DJI Zenmuse S1",
       "url": "https://enterprise.dji.com/cn/zenmuse-s1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse S1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 322,
+      "days_ago": 323,
       "firmware": [
         {
           "label": "Zenmuse V1",
@@ -509,12 +847,13 @@
     {
       "product": "DJI Zenmuse V1",
       "url": "https://enterprise.dji.com/cn/zenmuse-v1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_V1/20250723RN/Zenmuse_V1_S1_Release_Notes_cn.pdf",
       "language": "zh",
       "listing_date": "2025-07-23",
       "listing_label": "Zenmuse V1 - Release Notes",
       "date": "2025-07-23",
-      "days_ago": 322,
+      "days_ago": 323,
       "firmware": [
         {
           "label": "Zenmuse V1",
@@ -533,12 +872,13 @@
     {
       "product": "DJI Zenmuse P1",
       "url": "https://enterprise.dji.com/cn/zenmuse-p1/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_P1/20250610/DJI_P1_Release_Notes_cn_20250610.pdf",
       "language": "zh",
       "listing_date": "2025-06-10",
       "listing_label": "Zenmuse P1 - Release Notes",
       "date": "2025-06-10",
-      "days_ago": 365,
+      "days_ago": 366,
       "firmware": [
         {
           "label": "DJI P1固件版本",
@@ -554,12 +894,13 @@
     {
       "product": "DJI Dock",
       "url": "https://enterprise.dji.com/cn/dock/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/m30_series_dock_bundle/Release Note/20240815/DJI_Dock_Release_Notes_cn_20240815_1.pdf",
       "language": "zh",
       "listing_date": "2024-08-15",
       "listing_label": "DJI Dock - Release Notes",
       "date": "2024-08-15",
-      "days_ago": 664,
+      "days_ago": 665,
       "firmware": [
         {
           "label": "机场固件",
@@ -597,12 +938,13 @@
     {
       "product": "DJI Zenmuse H20N",
       "url": "https://enterprise.dji.com/cn/zenmuse-h20n/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20N/RN/20230518/Zenmuse_H20N_Release_Notes_cn_20230518.pdf",
       "language": "zh",
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20N - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1119,
+      "days_ago": 1120,
       "firmware": [
         {
           "label": "Zenmuse H20N固件版本",
@@ -633,12 +975,13 @@
     {
       "product": "DJI Zenmuse H20 Series",
       "url": "https://enterprise.dji.com/cn/zenmuse-h20-series/downloads",
+      "source_type": "pdf",
       "source_pdf": "https://dl.djicdn.com/downloads/Zenmuse_H20_Series/20230518/Zenmuse_H20_Series_Release_Notes_CN.pdf",
       "language": "zh",
       "listing_date": "2023-05-18",
       "listing_label": "Zenmuse H20 Series - Release Notes",
       "date": "2023-05-18",
-      "days_ago": 1119,
+      "days_ago": 1120,
       "firmware": [
         {
           "label": "Zenmuse H20系列固件版本",

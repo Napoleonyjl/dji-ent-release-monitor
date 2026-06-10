@@ -1,8 +1,8 @@
 # Scraping & parsing — assumptions and how to fix them
 
-`scraper.py` and `pdf_parser.py` are the only fragile parts. They depend on
-DJI's current website HTML and PDF template, which change without notice. This
-doc captures every assumption so you can re-verify and repair quickly.
+`scraper.py`, `pdf_parser.py`, and `fh2_parser.py` depend on external DJI
+formats that can change without notice. This document captures their assumptions
+so they can be re-verified and repaired quickly.
 
 ## 1. Finding the Release Notes PDF (`scraper.py`)
 
@@ -125,3 +125,27 @@ official product **/downloads** page that contains a Release Notes PDF row. The
 product (e.g. "DJI Matrice 350 RTK"). When the UI display name intentionally
 differs from DJI's download-row label, add `scrape_name` and keep that value
 aligned with DJI's label.
+
+## 5. FlightHub 2 HTML release notes
+
+The FH2 public and on-premises release pages are VuePress applications. Their
+initial HTML contains an empty `#app`, so `fh2_parser.py` requests the page
+through Jina Reader:
+
+```text
+https://r.jina.ai/http://fh.dji.com/user-manual/<language>/release-notes/...
+```
+
+Jina returns Markdown with a `Markdown Content:` marker. The parser:
+
+1. Selects the first public date line or private `##` version heading.
+2. Stops at the next release date/version.
+3. Converts headings, paragraphs, and lists to structured JSON.
+4. Ignores all Markdown images so FH2 output remains text-only.
+
+English and Chinese are fetched independently from their official `/en/` and
+`/cn/` pages. Do not translate or reuse content between languages.
+
+Run `scripts/test_fh2_parser.py` after parser changes. For live troubleshooting,
+request the Jina URL and verify it still contains `Markdown Content:` and a
+dated release section. Jina/network failures must remain per-entry errors.

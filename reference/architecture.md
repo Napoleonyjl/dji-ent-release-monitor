@@ -1,12 +1,12 @@
 # Architecture
 
-A deliberately small app: one FastAPI process for local/macOS use, a static
-frontend, two pure-logic modules (scrape + parse), and a static Cloudflare Pages
-build path for public hosting. No database and no JS framework.
+A deliberately small web app: one FastAPI process for local use, a static
+frontend, source-specific parsers, and a Cloudflare Pages build path. No
+database and no JS framework.
 
 ## Request flow
 
-### Local FastAPI / macOS app
+### Local FastAPI
 
 ```
 Browser
@@ -21,10 +21,10 @@ Browser
          │       and start one background refresh task for that language
          └─ _build_response()
                 ├─ _load_products()                       reads app/products.json
-                └─ for each product, in a thread pool:
-                       _process_product(name, url)
-                           ├─ scraper.scrape_product()    HTTP GET page + PDF
-                           └─ pdf_parser.parse_release_pdf()  pdfplumber extract
+                └─ for each source, in a thread pool:
+                       _process_product(config, language)
+                           ├─ PDF: scraper + pdf_parser
+                           └─ FH2: Jina Reader + fh2_parser
                 ├─ split into releases[] / errors[]
                 ├─ sort releases by days_ago (None last)
                 └─ return JSON (also stored in cache for 10 min and app/data)
@@ -42,7 +42,7 @@ GitHub Actions (daily)
   └─ scripts/build_static_site.py
         ├─ _build_response("en") -> public/data/releases-en.json
         ├─ _build_response("zh") -> public/data/releases-zh.json
-        ├─ seed src/app/data/releases-{en,zh}.json for local/macOS first-open
+        ├─ seed src/app/data/releases-{en,zh}.json for local first-open
         └─ copy static/index.html -> public/index.html
 
 Browser on pages.dev
@@ -90,6 +90,16 @@ reloads the static JSON; new data appears after the next scheduled deploy.
   historical releases newest-first in one PDF, so parsing stops at the next
   `Date:` line / section heading.
 
+### `app/fh2_parser.py`
+- Uses Jina Reader because the official FlightHub 2 VuePress HTML contains an
+  empty application shell until JavaScript renders it.
+- Parses the public and on-premises layouts independently and keeps only the
+  latest dated release.
+- Emits only text-based `heading`, `paragraph`, and `list` blocks. Images,
+  remote HTML, and Markdown are never passed through to the frontend.
+- Fetch or parse failures remain isolated to the affected entry through
+  `errors[]`.
+
 ### `app/static/index.html`
 - One file: markup + CSS in `:root` variables + vanilla JS.
 - State object `{ windowDays, products:Set }` plus the current language;
@@ -106,11 +116,14 @@ reloads the static JSON; new data appears after the next scheduled deploy.
 `ScrapedRelease`: `product, pdf_path, pdf_url, listing_date, listing_label`.
 `ParsedRelease`: `release_date: date|None, firmware: list[{label,version}],
 whats_new: list[str], warnings: list[str]`.
-The merged per-product dict and the top-level JSON are documented in `SKILL.md`.
+FH2 releases add `source_type: "fh2_html"`, `source_url`, optional `version`,
+and `content_blocks`. PDF entries explicitly use `source_type: "pdf"` while
+retaining their existing fields.
 
 ## Why these choices
-- **Plain HTTP, no headless browser:** DJI download pages are server-rendered;
-  the PDF link, row label, and listing date are all in the initial HTML.
+- **No bundled headless browser:** PDF pages use plain HTTP. FH2 pages use Jina
+  Reader so scheduled static builds can consume rendered content without
+  Playwright or Chromium.
 - **Thread pool, not async HTTP:** keeps `scraper` dependency-free (stdlib
   `urllib`) while still fetching all products in parallel.
 - **Single static file:** zero front-end toolchain; trivially bundled into the app.
