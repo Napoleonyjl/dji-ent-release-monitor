@@ -401,8 +401,20 @@
     let refreshTimer = null;
     const filters = {
       windowDays: 30,
-      products: new Set(),  // empty after first load until populated; filled with all product names
+      products: new Set(),
     };
+    let productSelectionInitialized = false;
+    const PRODUCT_KEYS = {
+      'FH2 Public': 'fh2-public',
+      'FH2 公有版': 'fh2-public',
+      'FH2 On-Premises': 'fh2-on-premises',
+      'FH2 私有版': 'fh2-on-premises',
+    };
+
+    function productKey(name) {
+      return PRODUCT_KEYS[name] || String(name);
+    }
+
     function readStoredLang() {
       try {
         const value = window.localStorage && window.localStorage.getItem('dji-release-lang');
@@ -555,13 +567,13 @@
       const sel = filters.products;
 
       const matching = (lastData.releases || []).filter(r =>
-        sel.has(r.product) &&
+        sel.has(productKey(r.product)) &&
         r.days_ago != null &&
         r.days_ago >= 0 &&
         r.days_ago <= window
       );
 
-      const filteredErrors = (lastData.errors || []).filter(r => sel.has(r.product));
+      const filteredErrors = (lastData.errors || []).filter(r => sel.has(productKey(r.product)));
 
       const parts = [];
       parts.push(`<div class="section-title">${esc(t('sectionTitle')(window, matching.length, lastData.releases.length))}</div>`);
@@ -583,8 +595,9 @@
     function renderProductChips() {
       const order = lastData.product_order || [];
       productChipsEl.innerHTML = order.map(name => {
-        const active = filters.products.has(name) ? 'active' : '';
-        return `<button class="chip product ${active}" data-product="${esc(name)}">${esc(name)}</button>`;
+        const key = productKey(name);
+        const active = filters.products.has(key) ? 'active' : '';
+        return `<button class="chip product ${active}" data-product="${esc(key)}">${esc(name)}</button>`;
       }).join('');
     }
 
@@ -616,7 +629,7 @@
 
       // Select all / none
       document.getElementById('select-all').addEventListener('click', () => {
-        for (const name of lastData.product_order || []) filters.products.add(name);
+        for (const name of lastData.product_order || []) filters.products.add(productKey(name));
         renderProductChips();
         applyAndRender();
       });
@@ -696,9 +709,10 @@
         const hadData = Boolean(lastData);
         lastData = data;
 
-        // Default: select all products
-        if (filters.products.size === 0) {
-          for (const name of data.product_order || []) filters.products.add(name);
+        // Select all only on the first load; an intentional empty selection must persist.
+        if (!productSelectionInitialized) {
+          for (const name of data.product_order || []) filters.products.add(productKey(name));
+          productSelectionInitialized = true;
         }
 
         filterBar.style.display = '';
@@ -736,7 +750,6 @@
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       writeStoredLang(currentLang);
       lastData = null;
-      filters.products.clear();
       if (refreshTimer) clearTimeout(refreshTimer);
       load(false);
     });
