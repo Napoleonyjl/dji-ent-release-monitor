@@ -28,6 +28,7 @@ from __future__ import annotations
 import re
 import shutil
 import subprocess
+import threading
 from io import BytesIO
 from dataclasses import dataclass, field
 from datetime import date
@@ -62,6 +63,7 @@ BULLET_PREFIX_RE = re.compile(r"^[•\-·*■◦⚫\uf06c\uf0b7]\s*")
 OCR_BULLET_PREFIX_RE = re.compile(
     r"^(?:(?:[eEoO©®@])\s+|[。.,，:：]+\s*)(?=[A-Z\u3400-\u9fff])"
 )
+OCR_LOCK = threading.Lock()
 DOCK3_MATRICE4D_TITLE_RE = re.compile(r"3\s*/\s*Matrice\s+4D", re.IGNORECASE)
 DOCK3_MATRICE4D_LABELS_ZH = [
     "机场固件版本",
@@ -264,30 +266,34 @@ def _extract_ocr_text(pdf_path: Path, max_pages: int = 2) -> str:
         raise RuntimeError("Tesseract OCR is not installed")
 
     parts: list[str] = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages[:max_pages]:
-            image = page.to_image(resolution=300).original
-            image_bytes = BytesIO()
-            image.save(image_bytes, format="PNG")
-            completed = subprocess.run(
-                [
-                    tesseract,
-                    "stdin",
-                    "stdout",
-                    "-l",
-                    "chi_sim+eng",
-                    "--psm",
-                    "6",
-                ],
-                input=image_bytes.getvalue(),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                check=False,
-            )
-            if completed.returncode != 0:
-                error = completed.stderr.decode("utf-8", errors="replace").strip()
-                raise RuntimeError(error or "Tesseract OCR failed")
-            parts.append(completed.stdout.decode("utf-8", errors="replace"))
+    # pypdfium2 page rendering is not thread-safe. Product parsing otherwise
+    # runs concurrently, so serialize this uncommon fallback to avoid native
+    # crashes in scheduled builds.
+    with OCR_LOCK:
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages[:max_pages]:
+                image = page.to_image(resolution=300).original
+                image_bytes = BytesIO()
+                image.save(image_bytes, format="PNG")
+                completed = subprocess.run(
+                    [
+                        tesseract,
+                        "stdin",
+                        "stdout",
+                        "-l",
+                        "chi_sim+eng",
+                        "--psm",
+                        "6",
+                    ],
+                    input=image_bytes.getvalue(),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    check=False,
+                )
+                if completed.returncode != 0:
+                    error = completed.stderr.decode("utf-8", errors="replace").strip()
+                    raise RuntimeError(error or "Tesseract OCR failed")
+                parts.append(completed.stdout.decode("utf-8", errors="replace"))
     return "\n".join(parts)
 
 
