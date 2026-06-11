@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T00:57:04",
+  "generated_at": "2026-06-11T22:33:53",
   "today": "2026-06-11",
   "language": "zh",
   "product_order": [
@@ -25,6 +25,28 @@
   ],
   "releases": [
     {
+      "product_id": "dock-2",
+      "product": "DJI Dock 2",
+      "url": "https://enterprise.dji.com/cn/dock-2/downloads",
+      "source_type": "pdf",
+      "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/dock-2/RN/20260611/DJI_Dock_2_Release_Note_cn.pdf",
+      "language": "zh",
+      "listing_date": "2026-06-11",
+      "listing_label": "DJI Dock 2 - Release Notes",
+      "date": "2026-06-11",
+      "days_ago": 0,
+      "firmware": [],
+      "whats_new": [
+        "修复部分已知问题。"
+      ],
+      "parse_warnings": [
+        "Could not parse the firmware version table"
+      ],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
+    },
+    {
+      "product_id": "matrice-400",
       "product": "DJI Matrice 400",
       "url": "https://enterprise.dji.com/cn/matrice-400/downloads",
       "source_type": "pdf",
@@ -52,9 +74,12 @@
         "H30 使用禅思 系列相机时，导线巡视功能支持调整云台俯仰角度。",
         "L2/L3 使用禅思 相机时，仿线飞行功能支持设置失联后继续执行。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "matrice-350-rtk",
       "product": "DJI Matrice 350 RTK",
       "url": "https://enterprise.dji.com/cn/matrice-350-rtk/downloads",
       "source_type": "pdf",
@@ -137,9 +162,12 @@
       "whats_new": [
         "修复了使用 MSDK 虚拟摇杆控制时，飞行器信号失联后无法触发返航的问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "fh2-public",
       "product": "FH2 公有版",
       "url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-public.html",
       "source_type": "fh2_html",
@@ -214,9 +242,12 @@
           ]
         }
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-l3",
       "product": "DJI Zenmuse L3",
       "url": "https://enterprise.dji.com/cn/zenmuse-l3/downloads",
       "source_type": "pdf",
@@ -252,9 +283,12 @@
         "优化雷达点云跨周期解算功能。",
         "照片XMP字段新增Camera Degree字段，与原Gimbal Degree字段区分，提升数据信息完整性。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "dock-3-m4d-series",
       "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/cn/dock-3/downloads",
       "source_type": "pdf",
@@ -316,9 +350,12 @@
         "DJI Pilot 2：优化红外模式等温线显示效果。手动选择目标后，将自动根据目标调节等温线显示效果。",
         "修复了一些已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "matrice-4-series",
       "product": "DJI Matrice 4 Series",
       "url": "https://enterprise.dji.com/cn/matrice-4-series/downloads",
       "source_type": "pdf",
@@ -362,9 +399,12 @@
         "新增相关功能，以满足GB 46750-2025和GB 46761-2025国家强制性标准要求。为确保设备功能正常启用 并顺利使用，请使用DJI Pilot 2 App按指引完成相关登记与激活流程。",
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "mavic-3-enterprise",
       "product": "DJI Mavic 3 Enterprise",
       "url": "https://enterprise.dji.com/cn/mavic-3-enterprise/downloads",
       "source_type": "pdf",
@@ -396,9 +436,12 @@
         "新增相关功能，以满足GB 46750-2025和GB 46761-2025国家强制性标准要求。为确保设备功能正常启用 并顺利使用，请使用DJI Pilot 2 App按指引完成相关登记与激活流程。",
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "fh2-on-premises",
       "product": "FH2 私有版",
       "url": "https://fh.dji.com/user-manual/cn/release-notes/release-notes-private.html",
       "source_type": "fh2_html",
@@ -643,9 +686,12 @@
           ]
         }
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-h30-series",
       "product": "DJI Zenmuse H30 Series",
       "url": "https://enterprise.dji.com/cn/zenmuse-h30-series/downloads",
       "source_type": "pdf",
@@ -664,9 +710,12 @@
       "whats_new": [
         "搭配Matrice 400飞行器时，支持输出 MISB协议数据。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "manifold-3",
       "product": "DJI Manifold 3",
       "url": "https://enterprise.dji.com/cn/manifold-3/downloads",
       "source_type": "pdf",
@@ -726,9 +775,12 @@
         "新增支持外置设备及网络配置，适配RTL8852BU和RTL88X2BU USB Wi-Fi无线网卡。",
         "新增支持通过install.sh脚本实现免root权限安装软件依赖。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "d-rtk-3",
       "product": "DJI D-RTK 3",
       "url": "https://enterprise.dji.com/cn/d-rtk-3/downloads",
       "source_type": "pdf",
@@ -778,27 +830,12 @@
         "新增语音播报功能。支持实时播报作业信息，提升操作效率。",
         "新增支持配置快捷打点按键。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
-      "product": "DJI Dock 2",
-      "url": "https://enterprise.dji.com/cn/dock-2/downloads",
-      "source_type": "pdf",
-      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_2/Release_Note/20260206/DJI_Dock_2_Release_Note_cn1.pdf",
-      "language": "zh",
-      "listing_date": "2026-02-06",
-      "listing_label": "DJI Dock 2 - Release Notes",
-      "date": "2026-02-06",
-      "days_ago": 125,
-      "firmware": [],
-      "whats_new": [
-        "修复部分已知问题。"
-      ],
-      "parse_warnings": [
-        "Could not parse the firmware version table"
-      ]
-    },
-    {
+      "product_id": "zenmuse-l2",
       "product": "DJI Zenmuse L2",
       "url": "https://enterprise.dji.com/cn/zenmuse-l2/downloads",
       "source_type": "pdf",
@@ -817,9 +854,12 @@
       "whats_new": [
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-s1",
       "product": "DJI Zenmuse S1",
       "url": "https://enterprise.dji.com/cn/zenmuse-s1/downloads",
       "source_type": "pdf",
@@ -842,9 +882,12 @@
       "whats_new": [
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-v1",
       "product": "DJI Zenmuse V1",
       "url": "https://enterprise.dji.com/cn/zenmuse-v1/downloads",
       "source_type": "pdf",
@@ -867,9 +910,12 @@
       "whats_new": [
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-p1",
       "product": "DJI Zenmuse P1",
       "url": "https://enterprise.dji.com/cn/zenmuse-p1/downloads",
       "source_type": "pdf",
@@ -889,9 +935,12 @@
         "新增支持Matrice 400。",
         "修复部分已知问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "dock",
       "product": "DJI Dock",
       "url": "https://enterprise.dji.com/cn/dock/downloads",
       "source_type": "pdf",
@@ -933,9 +982,12 @@
         "修复偶现4G私有化部署信息丢失的问题。",
         "提升系统稳定性。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-h20n",
       "product": "DJI Zenmuse H20N",
       "url": "https://enterprise.dji.com/cn/zenmuse-h20n/downloads",
       "source_type": "pdf",
@@ -970,9 +1022,12 @@
       "whats_new": [
         "新增对M350 RTK飞行器的支持。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     },
     {
+      "product_id": "zenmuse-h20-series",
       "product": "DJI Zenmuse H20 Series",
       "url": "https://enterprise.dji.com/cn/zenmuse-h20-series/downloads",
       "source_type": "pdf",
@@ -1008,7 +1063,9 @@
         "新增对M350 RTK飞行器的支持。",
         "修复全景拍照过程中App没有拍照声音的问题。"
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:53"
     }
   ],
   "errors": [],

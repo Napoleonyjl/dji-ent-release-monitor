@@ -26,6 +26,7 @@ Browser
                            ├─ PDF: scraper + pdf_parser
                            └─ FH2: Jina Reader + fh2_parser
                 ├─ split into releases[] / errors[]
+                ├─ replace transient failures with last-known-good rows by product_id
                 ├─ sort releases by days_ago (None last)
                 └─ return JSON (also stored in cache for 10 min and app/data)
 ```
@@ -66,6 +67,9 @@ reloads the static JSON; new data appears after the next scheduled deploy.
   `app/data/releases-zh.json`. They are returned immediately when present, and
   `/api/releases` starts a non-blocking refresh task instead of making the user
   wait for the full scrape.
+- Every configured product has a stable `product_id`. Successful rows include
+  `last_success_at` and `stale: false`; a transiently failed refresh reuses the
+  previous row with `stale: true` and a recalculated `days_ago`.
 - Concurrency: `_build_response()` runs each product through
   `loop.run_in_executor(None, _process_product, ...)` — i.e. the default thread
   pool — because `scraper`/`pdf_parser` are synchronous and I/O-bound. All

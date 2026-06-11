@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 import json
+import logging
 import time
 from datetime import date, datetime
 from pathlib import Path
@@ -16,6 +18,7 @@ from .fh2_parser import FH2Error, scrape_fh2_release
 from .pdf_parser import parse_release_pdf
 from .scraper import ScrapeError, scrape_product
 
+logger = logging.getLogger(__name__)
 
 APP_DIR = Path(__file__).parent
 PRODUCTS_FILE = APP_DIR / "products.json"
@@ -50,6 +53,55 @@ def _product_name(product: dict, language: str) -> str:
 def _product_url(product: dict, language: str) -> str:
     value = product.get("urls", product.get("url"))
     return str(_localized_value(value, language))
+
+
+def _product_id(product: dict) -> str:
+    return str(product["product_id"])
+
+
+def _infer_product_id(release: dict, products: list[dict]) -> str | None:
+    existing = release.get("product_id")
+    if existing:
+        return str(existing)
+
+    release_name = str(release.get("product", ""))
+    for product in products:
+        names = product["name"]
+        if isinstance(names, dict):
+            candidates = {str(value) for value in names.values()}
+        else:
+            candidates = {str(names)}
+        if release_name in candidates:
+            return _product_id(product)
+    return None
+
+
+def merge_previous_snapshots(language: str, snapshots: list[dict | None]) -> dict:
+    """Combine historical payloads into the newest successful row per product."""
+    products = _load_products()
+    best: dict[str, tuple[str, dict]] = {}
+
+    for snapshot in snapshots:
+        if not isinstance(snapshot, dict):
+            continue
+        generated_at = str(snapshot.get("generated_at", ""))
+        for release in snapshot.get("releases", []):
+            if not isinstance(release, dict):
+                continue
+            product_id = _infer_product_id(release, products)
+            if not product_id:
+                continue
+            candidate = copy.deepcopy(release)
+            candidate["product_id"] = product_id
+            freshness = str(candidate.get("last_success_at") or generated_at)
+            current = best.get(product_id)
+            if current is None or freshness > current[0]:
+                best[product_id] = (freshness, candidate)
+
+    return {
+        "language": language,
+        "releases": [item[1] for item in best.values()],
+    }
 
 
 def _snapshot_path(language: str) -> Path:
@@ -87,6 +139,7 @@ def _response_payload(data: dict, *, cached: bool, stale: bool, updating: bool) 
 
 
 def _process_product(
+    product_id: str,
     name: str,
     url: str,
     language: str,
@@ -99,14 +152,25 @@ def _process_product(
         try:
             parsed = scrape_fh2_release(url, edition or "")
         except FH2Error as e:
-            return {"product": name, "url": url, "error": str(e)}
+            return {
+                "product_id": product_id,
+                "product": name,
+                "url": url,
+                "error": str(e),
+            }
         except Exception as e:
-            return {"product": name, "url": url, "error": f"Unexpected FH2 error: {e}"}
+            return {
+                "product_id": product_id,
+                "product": name,
+                "url": url,
+                "error": f"Unexpected FH2 error: {e}",
+            }
 
         today = date.today()
         release_date = parsed.release_date
         days_ago = (today - release_date).days if release_date else None
         return {
+            "product_id": product_id,
             "product": name,
             "url": url,
             "source_type": "fh2_html",
@@ -121,6 +185,7 @@ def _process_product(
 
     if source_type != "pdf":
         return {
+            "product_id": product_id,
             "product": name,
             "url": url,
             "error": f"Unsupported source type: {source_type}",
@@ -130,14 +195,25 @@ def _process_product(
     try:
         scraped = scrape_product(source_name, url, language=language)
     except ScrapeError as e:
-        return {"product": name, "url": url, "error": str(e)}
+        return {
+            "product_id": product_id,
+            "product": name,
+            "url": url,
+            "error": str(e),
+        }
     except Exception as e:
-        return {"product": name, "url": url, "error": f"Unexpected scrape error: {e}"}
+        return {
+            "product_id": product_id,
+            "product": name,
+            "url": url,
+            "error": f"Unexpected scrape error: {e}",
+        }
 
     try:
         parsed = parse_release_pdf(scraped.pdf_path)
     except Exception as e:
         return {
+            "product_id": product_id,
             "product": name,
             "url": url,
             "source_pdf": scraped.pdf_url,
@@ -149,6 +225,7 @@ def _process_product(
     days_ago = (today - release_date).days if release_date else None
 
     return {
+        "product_id": product_id,
         "product": name,
         "url": scraped.page_url,
         "source_type": "pdf",
@@ -164,14 +241,49 @@ def _process_product(
     }
 
 
-async def _build_response(language: str) -> dict:
+def _fallback_release(
+    previous: dict,
+    product: dict,
+    language: str,
+) -> dict:
+    fallback = copy.deepcopy(previous)
+    fallback["product_id"] = _product_id(product)
+    fallback["product"] = _product_name(product, language)
+    fallback["url"] = _product_url(product, language)
+    fallback["language"] = language
+    fallback["stale"] = True
+    fallback["stale_reason"] = "source_temporarily_unavailable"
+
+    raw_date = fallback.get("date")
+    try:
+        release_date = date.fromisoformat(raw_date) if raw_date else None
+    except (TypeError, ValueError):
+        release_date = None
+    fallback["days_ago"] = (date.today() - release_date).days if release_date else None
+    return fallback
+
+
+async def _build_response(
+    language: str,
+    previous_data: dict | None = None,
+) -> dict:
     """Run all per-product scrapes in a thread pool."""
     products = _load_products()
+    if previous_data is None:
+        previous_data = _read_snapshot(language)
+    previous = merge_previous_snapshots(language, [previous_data])
+    previous_by_id = {
+        release["product_id"]: release
+        for release in previous.get("releases", [])
+        if release.get("product_id")
+    }
+
     loop = asyncio.get_running_loop()
     tasks = [
         loop.run_in_executor(
             None,
             _process_product,
+            _product_id(p),
             _product_name(p, language),
             _product_url(p, language),
             language,
@@ -183,12 +295,35 @@ async def _build_response(language: str) -> dict:
     ]
     results = await asyncio.gather(*tasks)
 
+    generated_at = datetime.now().isoformat(timespec="seconds")
     releases: list[dict] = []
     errors: list[dict] = []
-    for r in results:
+    for product, result in zip(products, results):
+        product_id = _product_id(product)
+        r = result
         if "error" in r:
-            errors.append(r)
+            logger.warning(
+                "Product refresh failed product_id=%s language=%s error=%s",
+                product_id,
+                language,
+                r["error"],
+            )
+            previous_release = previous_by_id.get(product_id)
+            if previous_release:
+                releases.append(_fallback_release(previous_release, product, language))
+            else:
+                errors.append(
+                    {
+                        "product_id": product_id,
+                        "product": _product_name(product, language),
+                        "url": _product_url(product, language),
+                        "error": "Data source temporarily unavailable",
+                    }
+                )
         else:
+            r["stale"] = False
+            r["last_success_at"] = generated_at
+            r.pop("stale_reason", None)
             releases.append(r)
 
     # Sort by newest first; entries with no date go to the bottom.
@@ -201,7 +336,7 @@ async def _build_response(language: str) -> dict:
     product_order = [_product_name(p, language) for p in products]
 
     return {
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "generated_at": generated_at,
         "today": date.today().isoformat(),
         "language": language,
         "product_order": product_order,

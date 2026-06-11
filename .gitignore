@@ -1,5 +1,6 @@
 .DS_Store
 .devvenv/
+.cache/
 __pycache__/
 *.pyc
 dist/

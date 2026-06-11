@@ -18,18 +18,31 @@ https://enterprise.dji.com/dock-3/downloads on 2026-06-04.
 
 from __future__ import annotations
 
+import logging
 import re
+import socket
 import tempfile
+import threading
+import time
 import urllib.parse
 import urllib.request
+from urllib.error import HTTPError, URLError
 from dataclasses import dataclass
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/120.0.0.0 Safari/537.36"
 )
+MAX_REQUESTS_PER_HOST = 2
+HTTP_RETRIES = 2
+HTTP_BACKOFF_SECONDS = 0.5
+RETRYABLE_HTTP_STATUS = {408, 429, 500, 502, 503, 504}
+_host_semaphores: dict[str, threading.BoundedSemaphore] = {}
+_host_semaphores_lock = threading.Lock()
 
 # Each download anchor in the page has a data-ga-label attribute like:
 #   data-ga-label="dowload-DJI Dock 3 - Release Notes"
@@ -68,7 +81,30 @@ class ScrapeError(Exception):
     pass
 
 
-def _http_get(url: str, timeout: int = 30) -> bytes:
+def _host_semaphore(hostname: str) -> threading.BoundedSemaphore:
+    with _host_semaphores_lock:
+        semaphore = _host_semaphores.get(hostname)
+        if semaphore is None:
+            semaphore = threading.BoundedSemaphore(MAX_REQUESTS_PER_HOST)
+            _host_semaphores[hostname] = semaphore
+        return semaphore
+
+
+def _is_retryable_error(error: Exception) -> bool:
+    if isinstance(error, HTTPError):
+        return error.code in RETRYABLE_HTTP_STATUS
+    if isinstance(error, (TimeoutError, socket.timeout)):
+        return True
+    if isinstance(error, URLError):
+        return isinstance(error.reason, (TimeoutError, socket.timeout))
+    return False
+
+
+def _http_get(
+    url: str,
+    timeout: int = 30,
+    retries: int = HTTP_RETRIES,
+) -> bytes:
     # Some DJI PDF URLs contain literal spaces in the path; urllib refuses
     # those as "control characters". Re-quote the path component so spaces and
     # other unsafe chars become %20.
@@ -77,9 +113,33 @@ def _http_get(url: str, timeout: int = 30) -> bytes:
     safe_url = urllib.parse.urlunsplit(
         (parsed.scheme, parsed.netloc, safe_path, parsed.query, parsed.fragment)
     )
-    req = urllib.request.Request(safe_url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+    hostname = parsed.hostname or parsed.netloc or "unknown-host"
+    semaphore = _host_semaphore(hostname)
+
+    for attempt in range(1, retries + 2):
+        req = urllib.request.Request(safe_url, headers={"User-Agent": USER_AGENT})
+        try:
+            with semaphore:
+                with urllib.request.urlopen(req, timeout=timeout) as resp:
+                    return resp.read()
+        except Exception as error:
+            retryable = _is_retryable_error(error)
+            logger.warning(
+                "HTTP fetch failed host=%s attempt=%d/%d retryable=%s "
+                "error_type=%s url=%s error=%s",
+                hostname,
+                attempt,
+                retries + 1,
+                retryable,
+                type(error).__name__,
+                safe_url,
+                error,
+            )
+            if not retryable or attempt > retries:
+                raise
+            time.sleep(HTTP_BACKOFF_SECONDS * (2 ** (attempt - 1)))
+
+    raise RuntimeError("unreachable")
 
 
 def _localized_page_url(url: str, language: str) -> str:

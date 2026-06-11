@@ -282,6 +282,11 @@
       font-size: 12px;
       margin-top: 12px;
     }
+    .stale-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0 0 10px;
+    }
     .error-card {
       border-left: 3px solid var(--red);
     }
@@ -358,6 +363,8 @@
         openPdf: '📄 Open Release Notes PDF',
         openReleasePage: 'Open Release Page ↗',
         whatsNew: "What's new",
+        staleBadge: 'Using previous data',
+        staleNote: value => `Source temporarily unavailable · last successful update: ${value}`,
         sectionTitle: (days, shown, total) => `Updates in the last ${days} days · ${shown} of ${total} products selected`,
         noUpdates: days => `No selected products have released firmware in the last ${days} days.`,
         errors: count => `Errors (${count})`,
@@ -388,6 +395,8 @@
         openPdf: '📄 打开发布记录 PDF',
         openReleasePage: '打开发布页面 ↗',
         whatsNew: '本次更新',
+        staleBadge: '使用上次数据',
+        staleNote: value => `数据源暂时不可用 · 上次成功更新：${value}`,
         sectionTitle: (days, shown, total) => `最近 ${days} 天的更新 · 已选产品中 ${shown}/${total} 个有记录`,
         noUpdates: days => `最近 ${days} 天内，所选产品没有发布固件更新。`,
         errors: count => `错误 (${count})`,
@@ -412,6 +421,11 @@
     };
 
     function productKey(name) {
+      const record = [
+        ...(lastData && lastData.releases || []),
+        ...(lastData && lastData.errors || []),
+      ].find(item => item.product === name);
+      if (record && record.product_id) return String(record.product_id);
       return PRODUCT_KEYS[name] || String(name);
     }
 
@@ -476,6 +490,15 @@
       return `<span class="badge gray">${esc(t('daysAgo')(daysAgo))}</span>`;
     }
 
+    function staleStatus(r) {
+      if (!r.stale) return { badge: '', note: '' };
+      const value = r.last_success_at || t('unknownDate');
+      return {
+        badge: `<span class="badge gray">${esc(t('staleBadge'))}</span>`,
+        note: `<div class="stale-note">${esc(t('staleNote')(value))}</div>`,
+      };
+    }
+
     function renderFh2Blocks(blocks) {
       const parts = [];
       for (const block of blocks || []) {
@@ -499,12 +522,13 @@
       ).join('');
 
       const whatsNew = (r.whats_new || []).map(b => `<li>${esc(b)}</li>`).join('');
+      const stale = staleStatus(r);
 
       return `
         <div class="card">
           <div class="card-head">
             <h2>${esc(r.product)}</h2>
-            <div class="badges">${freshnessBadge(r.days_ago)}</div>
+            <div class="badges">${stale.badge || ''}${freshnessBadge(r.days_ago)}</div>
           </div>
           <div class="meta-row">
             ${esc(t('released'))} <strong>${esc(r.date || t('unknownDate'))}</strong>
@@ -513,6 +537,7 @@
           <a class="source-link" href="${esc(r.source_pdf)}" target="_blank" rel="noopener">
             ${esc(t('openPdf'))}
           </a>
+          ${stale.note || ''}
           ${firmwareRows ? `<table class="firmware-table"><tbody>${firmwareRows}</tbody></table>` : ''}
           ${whatsNew ? `<h3 style="margin:14px 0 6px;font-size:14px;">${esc(t('whatsNew'))}</h3><ul class="whats-new">${whatsNew}</ul>` : ''}
         </div>
@@ -521,11 +546,13 @@
 
     function renderFh2Card(r) {
       const content = renderFh2Blocks(r.content_blocks);
+      const stale = staleStatus(r);
       return `
         <div class="card">
           <div class="card-head">
             <h2>${esc(r.product)}</h2>
             <div class="badges">
+              ${stale.badge || ''}
               ${r.version ? `<span class="badge">${esc(r.version)}</span>` : ''}
               ${freshnessBadge(r.days_ago)}
             </div>
@@ -536,6 +563,7 @@
           <a class="source-link" href="${esc(r.source_url || r.url)}" target="_blank" rel="noopener">
             ${esc(t('openReleasePage'))}
           </a>
+          ${stale.note || ''}
           ${content ? `<div class="fh2-content">${content}</div>` : ''}
         </div>
       `;

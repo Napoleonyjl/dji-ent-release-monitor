@@ -32,9 +32,18 @@ If those files are not present, it falls back to the local FastAPI
 It installs `src/requirements.txt`, runs `scripts/build_static_site.py`, then
 deploys `public/` to Cloudflare Pages.
 
-FH2 collection depends on Jina Reader being reachable from GitHub Actions.
-Failure of either FH2 source is written to that language snapshot's `errors[]`;
-the remaining product data is still published.
+Before building, the workflow restores `.cache/last-known-good` with
+`actions/cache`. The build also reads the current Pages JSON and the repository
+snapshots, then keeps the newest successful row for each stable `product_id`.
+
+If a source temporarily fails after retries, its previous successful row is
+published with `stale: true` and `last_success_at`; the frontend marks the card
+as using previous data. If a failed product has no historical row at all, the
+build exits non-zero before deployment, so Cloudflare keeps serving the last
+complete deployment.
+
+FH2 collection depends on Jina Reader being reachable from GitHub Actions and
+uses the same last-known-good policy.
 
 If GitHub rejects workflow commits because your local token lacks the
 `workflow` scope, copy `reference/deploy-pages-workflow.yml` to

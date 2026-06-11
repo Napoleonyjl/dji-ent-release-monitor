@@ -38,6 +38,9 @@ the token scoring / penalties here.
 - `USER_AGENT` is a desktop Chrome string. DJI may block empty/odd UAs.
 - `_http_get` re-quotes URL paths so DJI PDF URLs containing literal spaces
   become `%20` (urllib otherwise rejects them as "control characters").
+- Requests are limited to two concurrent connections per hostname. Timeouts,
+  HTTP 408/429, and HTTP 5xx responses are retried twice with exponential
+  backoff; deterministic errors such as HTTP 404 are not retried.
 - A download must start with `%PDF`, else `ScrapeError` ("not a PDF") — this
   catches HTML error pages served with a `.pdf` URL.
 
@@ -119,12 +122,14 @@ template.
 
 ## 4. Adding / changing monitored products
 
-Edit `src/app/products.json` — an array of `{ "name", "url" }`. `url` must be the
-official product **/downloads** page that contains a Release Notes PDF row. The
-`name` tokens drive PDF-row scoring, so keep them close to how DJI labels the
-product (e.g. "DJI Matrice 350 RTK"). When the UI display name intentionally
-differs from DJI's download-row label, add `scrape_name` and keep that value
-aligned with DJI's label.
+Edit `src/app/products.json`. Every entry requires a stable, unique
+`product_id`; never change it when renaming or translating the display name,
+because last-known-good data is matched by this ID. `url` must be the official
+product **/downloads** page that contains a Release Notes PDF row. The `name`
+tokens drive PDF-row scoring, so keep them close to how DJI labels the product
+(e.g. "DJI Matrice 350 RTK"). When the UI display name intentionally differs
+from DJI's download-row label, add `scrape_name` and keep that value aligned
+with DJI's label.
 
 ## 5. FlightHub 2 HTML release notes
 

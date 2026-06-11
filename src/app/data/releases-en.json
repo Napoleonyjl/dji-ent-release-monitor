@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T00:56:53",
+  "generated_at": "2026-06-11T22:33:42",
   "today": "2026-06-11",
   "language": "en",
   "product_order": [
@@ -25,6 +25,51 @@
   ],
   "releases": [
     {
+      "product_id": "dock-2",
+      "product": "DJI Dock 2",
+      "url": "https://enterprise.dji.com/dock-2/downloads",
+      "source_type": "pdf",
+      "source_pdf": "https://terra-1-g.djicdn.com/6189933d30024fc1b331bffe4fe41837/dock-2/RN/20260611/DJI_Dock_2_Release_Note_en.pdf",
+      "language": "en",
+      "listing_date": "2026-06-11",
+      "listing_label": "DJI Dock 2 - Release Notes",
+      "date": "2026-06-11",
+      "days_ago": 0,
+      "firmware": [
+        {
+          "label": "Dock Firmware",
+          "version": "v 14.03.09.15"
+        },
+        {
+          "label": "Aircraft Firmware",
+          "version": "v 14.03.09.15"
+        },
+        {
+          "label": "Intelligent Flight Battery",
+          "version": "v 26.03.00.49"
+        },
+        {
+          "label": "Remote Controller Firmware",
+          "version": "v 02.01.07.04"
+        },
+        {
+          "label": "DJI Pilot 2 App",
+          "version": "v 14.1.0.45"
+        },
+        {
+          "label": "DJI Assistant 2 (Enterprise Series)",
+          "version": "v 2.1.20"
+        }
+      ],
+      "whats_new": [
+        "Fixed some known issues."
+      ],
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
+    },
+    {
+      "product_id": "matrice-400",
       "product": "DJI Matrice 400",
       "url": "https://enterprise.dji.com/matrice-400/downloads",
       "source_type": "pdf",
@@ -133,9 +178,12 @@
         "Added support for adjusting the gimbal pitch angle during Line Inspection when using Zenmuse H30 Series.",
         "Added support for configuring Power Line Follow to continue after signal loss when using Zenmuse L2/L3."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "matrice-350-rtk",
       "product": "DJI Matrice 350 RTK",
       "url": "https://enterprise.dji.com/matrice-350-rtk/downloads",
       "source_type": "pdf",
@@ -162,9 +210,12 @@
       "whats_new": [
         "Fixed the issue where the aircraft failed to trigger RTH after signal loss when being controlled via MSDK Virtual Stick."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "fh2-public",
       "product": "FH2 Public",
       "url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-public.html",
       "source_type": "fh2_html",
@@ -239,9 +290,12 @@
           ]
         }
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-l3",
       "product": "DJI Zenmuse L3",
       "url": "https://enterprise.dji.com/zenmuse-l3/downloads",
       "source_type": "pdf",
@@ -277,9 +331,12 @@
         "Optimized the LiDAR point cloud cross-cycle processing calculation.",
         "Added the Camera Degree field to photo XMP metadata, distinguishing it from the existing Gimbal Degree field to improve data completeness."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "dock-3-m4d-series",
       "product": "DJI Dock 3 / M4D Series",
       "url": "https://enterprise.dji.com/dock-3/downloads",
       "source_type": "pdf",
@@ -340,9 +397,12 @@
         "DJI Pilot 2: Optimized the isothermal display in infrared mode. After manually selecting a target, the isothermal display will automatically adjust based on the target.",
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "matrice-4-series",
       "product": "DJI Matrice 4 Series",
       "url": "https://enterprise.dji.com/matrice-4-series/downloads",
       "source_type": "pdf",
@@ -385,9 +445,12 @@
       "whats_new": [
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "mavic-3-enterprise",
       "product": "DJI Mavic 3 Enterprise",
       "url": "https://enterprise.dji.com/mavic-3-enterprise/downloads",
       "source_type": "pdf",
@@ -418,9 +481,12 @@
       "whats_new": [
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "fh2-on-premises",
       "product": "FH2 On-Premises",
       "url": "https://fh.dji.com/user-manual/en/release-notes/release-notes-private.html",
       "source_type": "fh2_html",
@@ -661,9 +727,12 @@
           ]
         }
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-h30-series",
       "product": "DJI Zenmuse H30 Series",
       "url": "https://enterprise.dji.com/zenmuse-h30-series/downloads",
       "source_type": "pdf",
@@ -714,9 +783,12 @@
       "whats_new": [
         "When used with the Matrice 400 aircraft, added support for MISB."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "manifold-3",
       "product": "DJI Manifold 3",
       "url": "https://enterprise.dji.com/manifold-3/downloads",
       "source_type": "pdf",
@@ -776,9 +848,12 @@
         "Added support for external device and network configurations with RTL8852BU and RTL88X2BU USB Wi- Fi adapters.",
         "Added support for installing software dependencies without root permissions via the install.sh script."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "d-rtk-3",
       "product": "DJI D-RTK 3",
       "url": "https://enterprise.dji.com/d-rtk-3/downloads",
       "source_type": "pdf",
@@ -828,50 +903,12 @@
         "Added support for voice prompts to provide key information in real time, improving operation efficiency.",
         "Added support for configuring a shortcut button for point recording."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
-      "product": "DJI Dock 2",
-      "url": "https://enterprise.dji.com/dock-2/downloads",
-      "source_type": "pdf",
-      "source_pdf": "https://dl.djicdn.com/downloads/DJI_Dock_2/Release_Note/20260206/DJI_Dock_2_Release_Note_en1.pdf",
-      "language": "en",
-      "listing_date": "2026-02-06",
-      "listing_label": "DJI Dock 2 - Release Notes",
-      "date": "2026-02-06",
-      "days_ago": 125,
-      "firmware": [
-        {
-          "label": "Dock Firmware",
-          "version": "v 14.03.09.06"
-        },
-        {
-          "label": "Aircraft Firmware",
-          "version": "v 14.03.09.06"
-        },
-        {
-          "label": "Intelligent Flight Battery",
-          "version": "v 26.03.00.50"
-        },
-        {
-          "label": "Remote Controller Firmware",
-          "version": "v 02.01.07.04"
-        },
-        {
-          "label": "DJI Pilot 2 App",
-          "version": "v 14.1.0.45"
-        },
-        {
-          "label": "DJI Assistant 2 (Enterprise Series)",
-          "version": "v 2.1.20"
-        }
-      ],
-      "whats_new": [
-        "Fixed some known issues."
-      ],
-      "parse_warnings": []
-    },
-    {
+      "product_id": "zenmuse-l2",
       "product": "DJI Zenmuse L2",
       "url": "https://enterprise.dji.com/zenmuse-l2/downloads",
       "source_type": "pdf",
@@ -922,9 +959,12 @@
       "whats_new": [
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-s1",
       "product": "DJI Zenmuse S1",
       "url": "https://enterprise.dji.com/zenmuse-s1/downloads",
       "source_type": "pdf",
@@ -951,9 +991,12 @@
       "whats_new": [
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-v1",
       "product": "DJI Zenmuse V1",
       "url": "https://enterprise.dji.com/zenmuse-v1/downloads",
       "source_type": "pdf",
@@ -980,9 +1023,12 @@
       "whats_new": [
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-p1",
       "product": "DJI Zenmuse P1",
       "url": "https://enterprise.dji.com/zenmuse-p1/downloads",
       "source_type": "pdf",
@@ -1006,9 +1052,12 @@
         "Added support for Matrice 400.",
         "Fixed some known issues."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "dock",
       "product": "DJI Dock",
       "url": "https://enterprise.dji.com/dock/downloads",
       "source_type": "pdf",
@@ -1057,9 +1106,12 @@
         "Added support for cancelling flight tasks, if the RTK data fails to converge for an extended period of time.",
         "Improved system stability."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-h20n",
       "product": "DJI Zenmuse H20N",
       "url": "https://enterprise.dji.com/zenmuse-h20n/downloads",
       "source_type": "pdf",
@@ -1094,9 +1146,12 @@
       "whats_new": [
         "Added support for M350 RTK."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     },
     {
+      "product_id": "zenmuse-h20-series",
       "product": "DJI Zenmuse H20 Series",
       "url": "https://enterprise.dji.com/zenmuse-h20-series/downloads",
       "source_type": "pdf",
@@ -1116,7 +1171,9 @@
         "Added support for M350 RTK.",
         "Fixed issue: the app does not have sound when taking panoramic photos."
       ],
-      "parse_warnings": []
+      "parse_warnings": [],
+      "stale": false,
+      "last_success_at": "2026-06-11T22:33:42"
     }
   ],
   "errors": [],
